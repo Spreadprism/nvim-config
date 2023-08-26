@@ -1,6 +1,7 @@
 {
     "Lua.diagnostics.globals": [
         "vim",
-        "set_keymap"
+        "set_keymap",
+        "exepath"
     ]
 }
