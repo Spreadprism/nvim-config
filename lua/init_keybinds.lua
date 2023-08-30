@@ -2,6 +2,7 @@ local mode_keybindings = {
     n = "normal",
     i = "insert",
     v = "visual",
+    t = "terminal"
     -- Add more modes if needed
   }
 

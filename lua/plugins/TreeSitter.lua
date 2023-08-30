@@ -38,6 +38,8 @@ return {
             "markdown",
             "markdown_inline",
             "python",
+            "rust",
+            "go",
             "query",
             "regex",
             "tsx",

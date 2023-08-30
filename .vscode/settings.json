@@ -1,4 +1,5 @@
 {
+    "editor.fontFamily": "JetBrainsMono Nerd Font",
     "Lua.diagnostics.globals": [
         "vim",
         "set_keymap",
