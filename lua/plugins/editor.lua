@@ -62,9 +62,59 @@ return {
           dependencies = { 'nvim-lua/plenary.nvim' },
           config = function ()
             local builtin = require('telescope.builtin')
-            vim.keymap.set('n', '<leader>ff', builtin.find_files, {desc="Find files"})
-            vim.keymap.set('n', '<leader>fg', builtin.live_grep, {desc="Live grep"})
-            vim.keymap.set('n', '<leader>fb', builtin.buffers, {desc="Find buffer"})
+            vim.keymap.set('n', '<leader>sf', builtin.find_files, {desc="Find files"})
+            vim.keymap.set('n', '<leader>scf', builtin.current_buffer_fuzzy_find, {desc="Search current buffer"})
+            vim.keymap.set('n', '<leader>sg', builtin.live_grep, {desc="Live grep"})
+            vim.keymap.set('n', '<leader>se', builtin.diagnostics, {desc="Search errors"})
+            vim.keymap.set('n', '<leader>sd', builtin.lsp_definitions, {desc="Search definition"})
+            vim.keymap.set('n', '<leader>si', builtin.lsp_implementations, {desc="Search definition"})
+            vim.keymap.set('n', '<leader>sr', builtin.lsp_references, {desc="Find references"})
+            vim.keymap.set('n', '<leader>sb', builtin.buffers, {desc="Find buffer"})
+
+            local trouble = require("trouble.providers.telescope") 
+            require('telescope').setup {
+              file_ignore_patterns = { "%.env" },
+              defaults = {
+                mappings = {
+                  i = {
+                    ["<Tab>"] = require("telescope.actions").move_selection_next,
+                    ["<S-Tab>"] = require("telescope.actions").move_selection_previous,
+                    ["<C-q>"] = require("telescope.actions").close,
+                    ["<c-t>"] = trouble.open_with_trouble
+                  },
+                }
+              }
+            }
           end
+      },
+      { 
+        "ellisonleao/dotenv.nvim",
+        config = function()
+          require('dotenv').setup()
+        end
+      },
+      {
+        "kylechui/nvim-surround",
+        version = "*", -- Use for stability; omit to use `main` branch for the latest features
+        event = "VeryLazy",
+        config = function()
+            require("nvim-surround").setup({
+                -- Configuration here, or leave empty to use defaults
+            })
+        end
+      },
+      {
+        "folke/trouble.nvim",
+        dependencies = { "nvim-tree/nvim-web-devicons" },
+        opts = {
+          signs = {
+            -- icons / text used for a diagnostic
+            error = "",
+            warning = "",
+            hint = "",
+            information = "",
+            other = "",
+          },
+        },
       }
 }

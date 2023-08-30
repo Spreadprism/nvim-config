@@ -24,7 +24,10 @@ local clients_lsp = function ()
     local c = {}
     for _, client in pairs(clients) do
         local name = client.name
-        table.insert(c, client.name)
+        if name == "pyright" then
+            name = name.."("..require("utility.python_env_manager").get_venv_dir_name()..")"
+        end
+        table.insert(c, name)
     end
     local venv = os.execute("")
     return "  " .. table.concat(c, '|')

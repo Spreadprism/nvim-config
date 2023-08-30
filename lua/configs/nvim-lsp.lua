@@ -4,8 +4,10 @@ return function()
 
     vim.diagnostic.config({
         update_in_insert=true,
-        underline = true,
     })
+
+    vim.cmd [[autocmd! CursorHold,CursorHoldI * lua vim.diagnostic.open_float(nil, {focus=false, scope="cursor"})]]
+
     local lsp_defaults = lspconfig.util.default_config
     -- Default LSP configs
     lsp_defaults.capabilities = vim.tbl_deep_extend(
@@ -16,10 +18,11 @@ return function()
 
     -- Language specific configs
     lspconfig.lua_ls.setup {}
-      
+
     lspconfig.pyright.setup {
         settings = {
             python = {
+                pythonPath = require("utility.python_env_manager").get_python_path(),
                 analysis = {
                     extraPaths = {vim.fn.getcwd()},
                     autoImportCompletions = true,
@@ -64,7 +67,7 @@ return function()
           vim.keymap.set('n', '<space>D', vim.lsp.buf.type_definition, opts)
           vim.keymap.set('n', '<space>rn', vim.lsp.buf.rename, opts)
           vim.keymap.set({ 'n', 'v' }, '<C-_>', vim.lsp.buf.code_action, opts)
-          vim.keymap.set('n', 'gr', vim.lsp.buf.references, opts)
+          vim.keymap.set('n', '<f2>', vim.lsp.buf.references, opts)
           vim.keymap.set('n', '<space>f', function()
             vim.lsp.buf.format { async = true }
           end, opts)

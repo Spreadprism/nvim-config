@@ -1,5 +1,8 @@
 return {
     {
+        "nvim-lua/plenary.nvim"
+    },
+    {
         "neovim/nvim-lspconfig",
         dependencies = {
             {"hrsh7th/nvim-cmp"},
@@ -35,19 +38,9 @@ return {
               "stylua",
               "shfmt",
               "pyright",
-              "anakin_language_server",
-              "rust-analyzer"
+              "rust-analyzer",
+              "debugpy"
             },
-          },
-    },
-    {
-        "HallerPatrick/py_lsp.nvim",
-        init = function ()
-            require'py_lsp'.setup {
-                -- This is optional, but allows to create virtual envs from nvim
-                host_python = "/usr/bin/python3",
-                default_venv_name = "venv" -- For local venv
-              }
-        end
+        }
     }
 }
