@@ -8,7 +8,9 @@ M.n = {
     ["<C-l>"] = {"<cmd>TmuxNavigateRight<CR>", "Navigate window right", { noremap = true }},
     ["<C-j>"] = {"<cmd>TmuxNavigateDown<CR>", "Navigate window down", { noremap = true }},
     ["<C-k>"] = {"<cmd>TmuxNavigateUp<CR>", "Navigate window up", { noremap = true }},
-    
+    -- Bufferline navigation
+    ["L"] = {"<cmd>BufferLineCycleNext<CR>", "Next window", { silent = true }},
+    ["H"] = {"<cmd>BufferLineCyclePrev<CR>", "Previous window", { silent = true }},
     -- Open Lazygit
     ["<leader>gg"] = {"<cmd>LazyGit<CR>", "Open lazygit"},
     -- closing and saving
@@ -26,7 +28,6 @@ M.n = {
     -- Buffers manipulation
     ["<leader><Left>"] = {":BufferLineCyclePrev<CR>", "Previous buffer", {silent = true}},
     ["<leader><Right>"] = {":BufferLineCycleNext<CR>", "Next buffer", {silent = true}},
-    
     ["<leader>L"] = {":Lazy<CR>", "Open Lazy", {silent = true}},
     ["<leader>li"] = {":LspInfo<CR>", "Open Lazy", {silent = true}},
     ["<leader>lr"] = {":LspRestart<CR>", "Open Lazy", {silent = true}},
