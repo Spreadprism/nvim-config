@@ -2,6 +2,15 @@ local M = {}
 
 -- Available options silent & noremap
 M.n = {
+
+    -- Tmux navigation
+    ["<C-w>"] = {"<cmd>TmuxNavigateLeft<CR>", "Navigate window left", { noremap = true }},
+    ["<C-l>"] = {"<cmd>TmuxNavigateRight<CR>", "Navigate window right", { noremap = true }},
+    ["<C-j>"] = {"<cmd>TmuxNavigateDown<CR>", "Navigate window down", { noremap = true }},
+    ["<C-k>"] = {"<cmd>TmuxNavigateUp<CR>", "Navigate window up", { noremap = true }},
+    
+    -- Open Lazygit
+    ["<leader>gg"] = {"<cmd>LazyGit<CR>", "Open lazygit"},
     -- closing and saving
     ["<C-q>"] = {":qa<CR>", "close", {silent = true}},
     -- code manipulation
@@ -22,7 +31,6 @@ M.n = {
     ["<leader>li"] = {":LspInfo<CR>", "Open Lazy", {silent = true}},
     ["<leader>lr"] = {":LspRestart<CR>", "Open Lazy", {silent = true}},
 
-
     -- terminal
     ["<C-t>"] = {":lua require(\"nvterm.terminal\").toggle \"horizontal\"<CR>", "Next buffer", {silent = true}},
 
@@ -30,14 +38,6 @@ M.n = {
 M.t = {
     -- terminal
     ["<C-t>"] = {"<C-\\><C-n><CR>:lua require(\"nvterm.terminal\").toggle \"horizontal\"<CR>", "Next buffer", {silent = true}},
-}
-M.i = {
-    ["<C-j>"] = {"<Down>", "Move down"},
-    ["<C-k>"] = {"<Up>", "Move up"},
-    -- <C-h> doesn't work on windows terminal
-    -- ["<C-h>"] = {"<Left>", "Move left"},
-    ["<C-l>"] = {"<Right>", "Move right"},
-    ["<C-e>"] = {"<C-o>$", "Go to end of line"}
 }
 M.v = {
     -- code manipulation

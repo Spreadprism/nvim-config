@@ -1,8 +1,5 @@
 return {
     {
-        "nvim-lua/plenary.nvim"
-    },
-    {
         "neovim/nvim-lspconfig",
         dependencies = {
             {"hrsh7th/nvim-cmp"},
@@ -30,6 +27,7 @@ return {
         config = require "configs.nvim-lsp"
     },
     {
+        lazy = false,
         "williamboman/mason.nvim",
         cmd = "Mason",
         build = ":MasonUpdate",

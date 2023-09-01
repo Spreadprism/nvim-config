@@ -1,14 +1,8 @@
 return {
     {
         "folke/tokyonight.nvim",
-        lazy = true,
+        lazy = false,
         opts = { style = "moon" },
-        priority = 1000,
-    },
-    {
-        "LazyVim/LazyVim",
-        opts = {
-            colorscheme = "tokyonight",
-        },
+        priority = 1000
     }
 }
