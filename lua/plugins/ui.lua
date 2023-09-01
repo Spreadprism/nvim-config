@@ -57,6 +57,14 @@ return {
       dependencies = "nvim-tree/nvim-web-devicons",
       opts = {
         options = {
+          diagnostics = "nvim_lsp",
+          diagnostics_indicator = function(count, level, diagnostics_dict, context)
+            if level:match("error") then
+              return " "
+            end
+            return ""
+          end,
+          numbers = "ordinal",
           separator_style = "slant",
           offsets = {
             {

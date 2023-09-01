@@ -8,16 +8,6 @@ vim.o.shiftwidth = 2
 
 vim.o.updatetime = 300
 
-vim.cmd([[
-  augroup LspDiagnosticsUnderline
-    autocmd!
-    autocmd ColorScheme * highlight LspDiagnosticsUnderlineError guibg=NONE guifg=NONE gui=undercurl
-    autocmd ColorScheme * highlight LspDiagnosticsUnderlineWarning guibg=NONE guifg=NONE gui=undercurl
-    autocmd ColorScheme * highlight LspDiagnosticsUnderlineInformation guibg=NONE guifg=NONE gui=undercurl
-    autocmd ColorScheme * highlight LspDiagnosticsUnderlineHint guibg=NONE guifg=NONE gui=undercurl
-  augroup END
-]])
-
 vim.fn.sign_define("DiagnosticSignError", {text = " ", texthl = "DiagnosticSignError"})
 vim.fn.sign_define("DiagnosticSignWarn", {text = " ", texthl = "DiagnosticSignWarn"})
 vim.fn.sign_define("DiagnosticSignInfo", {text = " ", texthl = "DiagnosticSignInfo"})

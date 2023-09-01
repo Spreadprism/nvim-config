@@ -27,7 +27,9 @@ local clients_lsp = function ()
         if name == "pyright" then
             name = name.."("..require("utility.python_env_manager").get_venv_dir_name()..")"
         end
-        table.insert(c, name)
+        if name ~= "null-ls" then
+            table.insert(c, name)
+        end
     end
     local venv = os.execute("")
     return "  " .. table.concat(c, '|')

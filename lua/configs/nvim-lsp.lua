@@ -1,3 +1,14 @@
+local function pyright_attach(client, bufnr)
+    -- Example: Keybindings for LSP features (optional)
+    local opts = { noremap=true, silent=false }
+    vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>cf', function()
+        print("LOADING BUFFER")
+        local current_buffer = vim.fn.bufname(vim.fn.bufnr(''))
+        print(current_buffer)
+    end, opts)
+    -- More keybindings can be added as needed
+end
+
 return function() 
     local lspconfig = require('lspconfig')
 
@@ -20,6 +31,7 @@ return function()
     lspconfig.lua_ls.setup {}
 
     lspconfig.pyright.setup {
+        on_attach = pyright_attach,
         settings = {
             python = {
                 pythonPath = require("utility.python_env_manager").get_python_path(),
@@ -65,9 +77,8 @@ return function()
             print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
           end, opts)
           vim.keymap.set('n', '<space>D', vim.lsp.buf.type_definition, opts)
-          vim.keymap.set('n', '<space>rn', vim.lsp.buf.rename, opts)
+          vim.keymap.set('n', '<f2>', vim.lsp.buf.rename, opts)
           vim.keymap.set({ 'n', 'v' }, '<C-_>', vim.lsp.buf.code_action, opts)
-          vim.keymap.set('n', '<f2>', vim.lsp.buf.references, opts)
           vim.keymap.set('n', '<space>f', function()
             vim.lsp.buf.format { async = true }
           end, opts)

@@ -3,7 +3,6 @@ local M = {}
 -- Available options silent & noremap
 M.n = {
     -- closing and saving
-    ["<C-w>"] = { ":wqa<CR>", "save and exit", {silent = true}},
     ["<C-q>"] = {":qa<CR>", "close", {silent = true}},
     -- code manipulation
     ["<A-J>"] = {"yyp", "Copy down", {silent = true}},
@@ -18,6 +17,11 @@ M.n = {
     -- Buffers manipulation
     ["<leader><Left>"] = {":BufferLineCyclePrev<CR>", "Previous buffer", {silent = true}},
     ["<leader><Right>"] = {":BufferLineCycleNext<CR>", "Next buffer", {silent = true}},
+    
+    ["<leader>L"] = {":Lazy<CR>", "Open Lazy", {silent = true}},
+    ["<leader>li"] = {":LspInfo<CR>", "Open Lazy", {silent = true}},
+    ["<leader>lr"] = {":LspRestart<CR>", "Open Lazy", {silent = true}},
+
 
     -- terminal
     ["<C-t>"] = {":lua require(\"nvterm.terminal\").toggle \"horizontal\"<CR>", "Next buffer", {silent = true}},
