@@ -9,8 +9,8 @@ return function ()
     vim.keymap.set('n', '<Leader>db', function() require('dap').toggle_breakpoint() end)
     vim.keymap.set('n', '<Leader>dB', function() require('dap').set_breakpoint() end)
     vim.keymap.set('n', '<Leader>dr', function() require('dap').run_last() end)
-    vim.keymap.set('n', '<Leader>ds', 
-        function() 
+    vim.keymap.set('n', '<Leader>ds',
+        function()
             require('dap').close()
             require("dapui").close()
         end)
