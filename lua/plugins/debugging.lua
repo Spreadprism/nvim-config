@@ -7,12 +7,12 @@ return {
         "rcarriga/nvim-dap-ui",
         dependencies = "mfussenegger/nvim-dap",
         config = function()
-        local dap = require("dap")
-        local dapui = require("dapui")
-        dapui.setup()
-        dap.listeners.after.event_initialized["dapui_config"] = function()
-            dapui.open()
-        end
+            local dap = require("dap")
+            local dapui = require("dapui")
+            dapui.setup(require("configs.nvim-dap-ui"))
+            dap.listeners.after.event_initialized["dapui_config"] = function()
+                dapui.open()
+            end
         end
     },
     {

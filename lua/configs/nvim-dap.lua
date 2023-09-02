@@ -15,5 +15,13 @@ return function ()
             require("dapui").close()
         end)
 
-    vim.keymap.set('n', '<leader>dod', function() require("dapui").toggle() end)
+    vim.keymap.set('n', '<leader>do', function() require("dapui").toggle() end)
+    vim.keymap.set('n', '<leader>de', function() require("dapui").eval() end)
+
+    local dap = require('dap')
+
+    dap.defaults.fallback.external_terminal = {
+        command = "tmux",
+        args = { "split-pane", "-c", vim.fn.getcwd()},
+    }
 end
