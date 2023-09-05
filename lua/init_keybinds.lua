@@ -17,7 +17,6 @@ for mode, keybindings in pairs(mappings) do
                 local action = action_config[1]
                 local description = action_config[2]
                 local opts = action_config[3]
-                
                 if opts == nil then
                     if description ~= nil then
                         opts = { desc = description }
