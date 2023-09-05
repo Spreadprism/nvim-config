@@ -39,6 +39,11 @@ M.t = {
     -- terminal
     ["<C-t>"] = {"<C-\\><C-n><CR>:lua require(\"nvterm.terminal\").toggle \"horizontal\"<CR>", "Next buffer", {silent = true}},
 }
+M.i = {
+    ["<C-l>"] = {"<Right>", "Move right", {silent = true}},
+    ["<C-j>"] = {"<Down>", "Move down", {silent = true}},
+    ["<C-k>"] = {"<Up>", "Move up", {silent = true}},
+}
 M.v = {
     -- code manipulation
     ["<Tab>"] = {">", "Add tab", {silent = true}},
