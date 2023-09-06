@@ -62,8 +62,14 @@ return function()
   }
   
   -- dockerfile 
-  lspconfig.dockerls.setup {
+  lspconfig.dockerls.setup { }
 
+  -- go
+  local util = require "lspconfig/util"
+  lspconfig.gopls.setup {
+    cmd={"gopls"},
+    filetypes={ "go", "gomod", "gowork", "gotmpl" },
+    root_dir = util.root_pattern("go.work", "go.mod", ".git")
   }
 
   vim.api.nvim_create_autocmd('LspAttach', {
@@ -71,7 +77,6 @@ return function()
       callback = function(ev)
         -- Enable completion triggered by <c-x><c-o>
         vim.bo[ev.buf].omnifunc = 'v:lua.vim.lsp.omnifunc'
-    
         -- Buffer local mappings.
         -- See `:help vim.lsp.*` for documentation on any of the below functions
         local opts = { buffer = ev.buf }
