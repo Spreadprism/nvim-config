@@ -68,8 +68,9 @@ return {
             vim.keymap.set('n', '<leader>se', builtin.diagnostics, {desc="Search errors"})
             vim.keymap.set('n', '<leader>sd', builtin.lsp_definitions, {desc="Search definition"})
             vim.keymap.set('n', '<leader>si', builtin.lsp_implementations, {desc="Search definition"})
-            vim.keymap.set('n', '<leader>sr', builtin.lsp_references, {desc="Find references"})
-            vim.keymap.set('n', '<leader>sb', builtin.buffers, {desc="Find buffer"})
+            vim.keymap.set('n', '<leader>sti', builtin.lsp_type_definitions, {desc="Search definition"})
+            vim.keymap.set('n', '<leader>sr', builtin.lsp_references, {desc="Search reference"})
+            vim.keymap.set('n', '<leader>sb', builtin.buffers, {desc="Search buffer"})
 
             local trouble = require("trouble.providers.telescope") 
             require('telescope').setup {
