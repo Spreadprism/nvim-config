@@ -15,7 +15,7 @@ return {
                     size = 0.2
                 },
             },
-            position = "left",
+            position = "right",
             size = 30
         },
         {
