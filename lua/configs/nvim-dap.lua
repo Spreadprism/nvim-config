@@ -1,6 +1,8 @@
 return function ()
     -- Set breakpoint
     vim.fn.sign_define('DapBreakpoint', {text='', texthl='ErrorMsg', linehl='', numhl=''})
+    vim.cmd('highlight DapStoppedSign guifg=#008080')
+    vim.fn.sign_define('DapStopped', {text='', texthl='DapStoppedSign', linehl='', numhl=''})
 
     vim.keymap.set('n', '<F5>', function() vim.cmd('wa') require('dap').continue() end)
     vim.keymap.set('n', '<F10>', function() require('dap').step_over() end)
