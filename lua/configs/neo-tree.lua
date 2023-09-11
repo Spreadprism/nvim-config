@@ -4,6 +4,7 @@ return function ()
       close_if_last_window = true,
       use_popups_for_input = false,
       filesystem = {
+          group_empty_dir = true,
           filtered_items = {
             visible = false, -- when true, they will just be displayed differently than normal items
             hide_dotfiles = false,

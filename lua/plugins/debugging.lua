@@ -23,8 +23,8 @@ return {
           "rcarriga/nvim-dap-ui"
       },
       config = function()
-          require("dap-python").setup(require("utility.python_env_manager").get_python_path())
           require('dap.ext.vscode').load_launchjs(nil, {})
+          require("dap-python").setup(require("utility.python_env_manager").get_python_path())
       end
   },
   {

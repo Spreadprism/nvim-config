@@ -91,7 +91,8 @@ return function()
         end, opts)
         vim.keymap.set('n', '<space>D', vim.lsp.buf.type_definition, opts)
         vim.keymap.set('n', '<f2>', vim.lsp.buf.rename, opts)
-        vim.keymap.set({ 'n', 'v' }, '<C-_>', vim.lsp.buf.code_action, opts)
+         
+        vim.keymap.set({ 'n', 'v' }, "<C-n>", vim.lsp.buf.code_action, opts)
         vim.keymap.set('n', '<space>f', function()
           vim.lsp.buf.format { async = true }
         end, opts)
