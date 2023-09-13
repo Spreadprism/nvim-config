@@ -71,7 +71,7 @@ return {
       vim.keymap.set('n', '<leader>sr', builtin.lsp_references, {desc="Search reference"})
       vim.keymap.set('n', '<leader>sb', builtin.buffers, {desc="Search buffer"})
 
-      local trouble = require("trouble.providers.telescope") 
+      local trouble = require("trouble.providers.telescope")
       require('telescope').setup {
         file_ignore_patterns = { "%.env" },
         defaults = {
@@ -87,7 +87,7 @@ return {
       }
     end
   },
-  { 
+  {
     "ellisonleao/dotenv.nvim",
     config = function()
       require('dotenv').setup()
@@ -118,28 +118,20 @@ return {
     },
   },
   {
+    "nvim-lua/plenary.nvim"
+  },
+  {
     "folke/todo-comments.nvim",
+    lazy=false,
     dependencies = { "nvim-lua/plenary.nvim" },
-    opts = {
-      keywords = {
-        TODO = { icon = " ", color = "info" },
-        HACK = { icon = " ", color = "warning" },
-        WARN = { icon = " ", color = "warning", alt = { "WARNING", "XXX" } },
-        PERF = { icon = " ", alt = { "OPTIM", "PERFORMANCE", "OPTIMIZE" } },
-        NOTE = { icon = " ", color = "hint", alt = { "INFO" } },
-        TEST = { icon = "⏲ ", color = "test", alt = { "TESTING", "PASSED", "FAILED" } },
-      },
-      colors = {
-        error = { "DiagnosticError", "ErrorMsg", "#DC2626" },
-        warning = { "DiagnosticWarn", "WarningMsg", "#FBBF24" },
-        info = { "DiagnosticInfo", "#2563EB" },
-        hint = { "DiagnosticHint", "#10B981" },
-        default = { "Identifier", "#7C3AED" },
-        test = { "Identifier", "#FF00FF" }
-      }
-    },
-    config = function()
-
+    config = function ()
+      require("todo-comments").setup({})
     end
+    -- PERF: test perf?  
+    -- HACK: bruh
+    -- TODO: wew
+    -- NOTE:  sdkfj dkfjskdfj 
+    -- FIX: fixed 
+    -- WARNING: test done
   }
 }

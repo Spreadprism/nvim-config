@@ -1,3 +1,4 @@
+---@diagnostic disable-next-line: lowercase-global
 function notInNeotree()
     local neotree_buffer = "neo-tree filesystem [1]"
     local current_buffer = vim.fn.fnamemodify(vim.api.nvim_buf_get_name(0), ":t")
