@@ -50,7 +50,70 @@ return {
       }
     }
   },
-  { "nvim-tree/nvim-web-devicons", lazy = true },
+  {
+    "norcalli/nvim-colorizer.lua",
+    config = function ()
+      require("colorizer").setup()
+    end
+  },
+  {
+    "nvim-tree/nvim-web-devicons",
+    lazy = true,
+    config = function ()
+      require("nvim-web-devicons").setup({
+        strict = true;
+        override_by_filename = {
+          ["go.mod"] = {
+            icon = "󰟓",
+            color = "#EF3D7B",
+            name = "gomod"
+          },
+          ["go.sum"] = {
+            icon = "󰟓",
+            color = "#EF3D7B",
+            name = "gosum"
+          },
+          [".env"] = {
+            icon = "",
+            color = "#F5BB33",
+            name = "env"
+          },
+        },
+        override_by_extension = {
+          ["go"] = {
+            icon = "󰟓",
+            color = "#29BEB0",
+            name = "go"
+          },
+          ["mojo"] = {
+            icon = "󰈸",
+            color = "#FF6723",
+            name = "mojo"
+          },
+          ["env"] = {
+            icon = "",
+            color = "#F5BB33",
+            name = "env"
+          },
+          ["code-workspace"] = {
+            icon = "󰨞",
+            color = "#23AAF2",
+            name = "codeworkspace"
+          },
+          ["rs"] = {
+            icon = "",
+            color = "#FF7047",
+            name = "rs"
+          },
+          ["bin"] = {
+            icon = "",
+            color = "#9D9D9D",
+            name = "bin"
+          },
+        },
+      })
+    end
+  },
   {
     "akinsho/bufferline.nvim",
     event = "VeryLazy",
@@ -79,10 +142,4 @@ return {
       },
     },
   },
-  {
-    "NvChad/nvterm",
-    config = function ()
-      require("nvterm").setup()
-    end,
-  }
 }
