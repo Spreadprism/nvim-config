@@ -1,7 +1,7 @@
 return function ()
   -- Set breakpoint
   vim.fn.sign_define('DapBreakpoint', {text='', texthl='ErrorMsg', linehl='', numhl=''})
-  vim.cmd('highlight DapStoppedSign guifg=#008080')
+  vim.cmd('highlight DapStoppedSign guifg=#87D285')
   vim.fn.sign_define('DapStopped', {text='', texthl='DapStoppedSign', linehl='', numhl=''})
 
   vim.keymap.set('n', '<F5>', function() vim.cmd('wa') require('dap').continue() end)
@@ -25,6 +25,7 @@ return function ()
 
   dap.defaults.fallback.external_terminal = {
     command = "tmux",
-    args = { "split-pane", "-c", vim.fn.getcwd()},
+    args = { "split-pane", "-c", vim.fn.getcwd(), "-p", "20", "-d"},
   }
+  dap.defaults.fallback.force_external_terminal = true
 end
