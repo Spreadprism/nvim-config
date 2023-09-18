@@ -81,9 +81,9 @@ return {
       vim.keymap.set('n', '<leader>sr', builtin.lsp_references, {desc="Search reference"})
       -- INFO: files
       vim.keymap.set('n', '<leader>sf', builtin.find_files, {desc="Search files"})
-      vim.keymap.set('n', '<leader>sg', builtin.live_grep, {desc="Grep workspace"})
+      vim.keymap.set('n', '<leader>sG', builtin.live_grep, {desc="Grep workspace"})
       -- INFO: current file
-      vim.keymap.set('n', '<leader>scf', builtin.current_buffer_fuzzy_find, {desc="Fuzzy finder"})
+      vim.keymap.set('n', '<leader>scG', builtin.current_buffer_fuzzy_find, {desc="Grep current file"})
       vim.keymap.set('n', '<leader>sce', function () require('telescope.builtin').diagnostics{bufnr=0} end, {desc="Search errors"})
 
       local trouble = require("trouble.providers.telescope")
