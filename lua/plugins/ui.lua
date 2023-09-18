@@ -50,7 +50,23 @@ return {
       }
     }
   },
-  { "nvim-tree/nvim-web-devicons", lazy = true },
+  {
+    "norcalli/nvim-colorizer.lua",
+    config = function ()
+      require("colorizer").setup()
+    end
+  },
+  {
+    "nvim-tree/nvim-web-devicons",
+    lazy = true,
+    config = function ()
+      require("nvim-web-devicons").setup({
+        strict = true;
+        override_by_filename = require("icons.filename"),
+        override_by_extension = require("icons.extension"),
+      })
+    end
+  },
   {
     "akinsho/bufferline.nvim",
     event = "VeryLazy",
@@ -79,10 +95,4 @@ return {
       },
     },
   },
-  {
-    "NvChad/nvterm",
-    config = function ()
-      require("nvterm").setup()
-    end,
-  }
 }

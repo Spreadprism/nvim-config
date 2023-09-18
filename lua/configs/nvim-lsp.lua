@@ -72,11 +72,17 @@ return function()
     filetypes={ "go", "gomod", "gowork", "gotmpl" },
     root_dir = util.root_pattern("go.work", "go.mod", ".git")
   }
+  -- mojo
+  lspconfig.mojo.setup {
+    cmd = { 'mojo-lsp-server' },
+    filetypes = { 'mojo' },
+    single_file_support = true,
+  }
 
   vim.api.nvim_create_autocmd('LspAttach', {
     group = vim.api.nvim_create_augroup('UserLspConfig', {}),
     callback = function(ev)
-      -- Enable completion triggered by <c-x><c-o>
+      -- Enable completion triggered by "c-x"<c-o>
       vim.bo[ev.buf].omnifunc = 'v:lua.vim.lsp.omnifunc'
       -- Buffer local mappings.
       -- See `:help vim.lsp.*` for documentation on any of the below functions

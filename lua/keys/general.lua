@@ -53,6 +53,8 @@ M.v = {
   ["<A-k>"] = {":m '<-2<CR>gv=gv", "Move up", {silent = true}},
   ["<A-J>"] = {"yp", "Copy down", {silent = true}},
   ["<A-K>"] = {"yP", "Copy up", {silent = true}},
+  -- code selection
+  ["A"] = {"ggVG", "Select all", {silent = true}}
 }
 
 return M

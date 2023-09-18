@@ -45,6 +45,10 @@ return {
         ["<leader>gh"] = { name = "+hunks" },
         ["<leader>q"] = { name = "+quit/session" },
         ["<leader>s"] = { name = "+search" },
+        ["<leader>sc"] = { name = "+current buffer" },
+        ["<leader>sh"] = { name = "+history" },
+        ["<leader>sg"] = { name = "+git" },
+        ["<leader>sgb"] = { name = "+current buffer" },
         ["<leader>u"] = { name = "+ui" },
         ["<leader>w"] = { name = "+windows" },
         ["<leader>x"] = { name = "+diagnostics/quickfix" },
@@ -57,20 +61,31 @@ return {
     end,
   },
   {
-    'nvim-telescope/telescope.nvim', tag = '0.1.2',
-    -- or                              , branch = '0.1.x',
+    'nvim-telescope/telescope.nvim',
     dependencies = { 'nvim-lua/plenary.nvim' },
     config = function ()
       local builtin = require('telescope.builtin')
-      vim.keymap.set('n', '<leader>sf', builtin.find_files, {desc="Find files"})
-      vim.keymap.set('n', '<leader>scf', builtin.current_buffer_fuzzy_find, {desc="Search current buffer"})
-      vim.keymap.set('n', '<leader>sg', builtin.live_grep, {desc="Live grep"})
-      vim.keymap.set('n', '<leader>swe', builtin.diagnostics, {desc="Search workspace errors"})
-      vim.keymap.set('n', '<leader>se', function() require('telescope.builtin').diagnostics{bufnr=0} end, {desc="Search errors"})
+      -- INFO: general
+      vim.keymap.set('n', '<leader>sb', builtin.buffers, {desc="Search buffer"})
+      vim.keymap.set('n', '<leader>sC', builtin.commands, {desc="Search commands"})
+      -- INFO: history
+      vim.keymap.set('n', '<leader>shC', builtin.command_history, {desc="Search commands history"})
+      -- INFO: git
+      vim.keymap.set('n', '<leader>sgB', builtin.git_branches, {desc="Search branches"})
+      vim.keymap.set('n', '<leader>sgc', builtin.git_commits, {desc="Search commits"})
+      vim.keymap.set('n', '<leader>sgbc', builtin.git_bcommits, {desc="Search commits"})
+      vim.keymap.set('v', '<leader>sgbc', builtin.git_bcommits_range, {desc="Search commits"})
+      -- INFO: lsp
+      vim.keymap.set('n', '<leader>se', builtin.diagnostics, {desc="Search errors"})
       vim.keymap.set('n', '<leader>sd', builtin.lsp_definitions, {desc="Search definition"})
       vim.keymap.set('n', '<leader>si', builtin.lsp_implementations, {desc="Search definition"})
       vim.keymap.set('n', '<leader>sr', builtin.lsp_references, {desc="Search reference"})
-      vim.keymap.set('n', '<leader>sb', builtin.buffers, {desc="Search buffer"})
+      -- INFO: files
+      vim.keymap.set('n', '<leader>sf', builtin.find_files, {desc="Search files"})
+      vim.keymap.set('n', '<leader>sg', builtin.live_grep, {desc="Grep workspace"})
+      -- INFO: current file
+      vim.keymap.set('n', '<leader>scf', builtin.current_buffer_fuzzy_find, {desc="Fuzzy finder"})
+      vim.keymap.set('n', '<leader>sce', function () require('telescope.builtin').diagnostics{bufnr=0} end, {desc="Search errors"})
 
       local trouble = require("trouble.providers.telescope")
       require('telescope').setup {
@@ -127,6 +142,10 @@ return {
     dependencies = { "nvim-lua/plenary.nvim" },
     config = function ()
       require("todo-comments").setup({})
+
+      vim.keymap.set('n', '<leader>st', "<cmd>TodoTelescope keywords=TODO<CR>", {desc="Search TODO"})
+      vim.keymap.set('n', '<leader>s#', "<cmd>TodoTelescope<CR>", {desc="Find tags"})
+
     end
     -- PERF: test perf?  
     -- HACK: bruh
