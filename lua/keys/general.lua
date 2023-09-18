@@ -35,7 +35,7 @@ M.n = {
 }
 M.t = {
   -- terminal
-  ["<esc>"] = {"<C-\\><C-n><CR>:lua require(\"nvterm.terminal\").toggle \"horizontal\"<CR>", "", {silent = true}},
+  ["<C-;>"] = {"<C-\\><C-n><CR>:lua require(\"nvterm.terminal\").toggle \"horizontal\"<CR>", "", {silent = true}},
 }
 M.i = {
   ["<C-l>"] = {"<Right>", "Move right", {silent = true}},
@@ -53,6 +53,7 @@ M.v = {
   ["<A-k>"] = {":m '<-2<CR>gv=gv", "Move up", {silent = true}},
   ["<A-J>"] = {"yp", "Copy down", {silent = true}},
   ["<A-K>"] = {"yP", "Copy up", {silent = true}},
+  ["/"] = {"gcgv", "toggle comment", {silent = true}},
   -- code selection
   ["A"] = {"ggVG", "Select all", {silent = true}}
 }

@@ -74,7 +74,6 @@ return {
       vim.keymap.set('n', '<leader>sgB', builtin.git_branches, {desc="Search branches"})
       vim.keymap.set('n', '<leader>sgc', builtin.git_commits, {desc="Search commits"})
       vim.keymap.set('n', '<leader>sgbc', builtin.git_bcommits, {desc="Search commits"})
-      vim.keymap.set('v', '<leader>sgbc', builtin.git_bcommits_range, {desc="Search commits"})
       -- INFO: lsp
       vim.keymap.set('n', '<leader>se', builtin.diagnostics, {desc="Search errors"})
       vim.keymap.set('n', '<leader>sd', builtin.lsp_definitions, {desc="Search definition"})
@@ -153,5 +152,12 @@ return {
     -- NOTE:  sdkfj dkfjskdfj 
     -- FIX: fixed 
     -- WARNING: test done
+  },
+  {
+    'numToStr/Comment.nvim',
+    opts = {
+      -- add any options here
+    },
+    lazy = false,
   }
 }
