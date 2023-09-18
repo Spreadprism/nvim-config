@@ -2,7 +2,6 @@ local M = {}
 
 -- Available options silent & noremap
 M.n = {
-
   -- Tmux navigation
   ["<C-w>"] = {"<cmd>TmuxNavigateLeft<CR>", "Navigate window left", { noremap = true }},
   ["<C-l>"] = {"<cmd>TmuxNavigateRight<CR>", "Navigate window right", { noremap = true }},
@@ -44,6 +43,7 @@ M.i = {
   ["<C-e>"] = {"<esc>A", "Go to end of line", {silent = true}},
   ["<C-s>"] = {"<esc>^", "Go to first char of line", {silent = true}},
   ["<C-o>"] = {"<esc>o", "Insert line bellow", {silent = true}},
+  ["<S-Tab>"] = {"<C-H>", "Remove tab", {silent = true}},
 }
 M.v = {
   -- code manipulation

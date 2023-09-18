@@ -95,4 +95,22 @@ return {
       },
     },
   },
+  {
+    'glepnir/dashboard-nvim',
+    event = 'VimEnter',
+    config = function()
+      require('dashboard').setup {
+        theme = 'doom',
+        hide = {
+          statusline = true,
+          tabline = false,
+          winbar = false
+        },
+        shortcut_type = 'number',
+        ---@diagnostic disable-next-line: different-requires
+        config = require("configs.dashboard")
+      }
+    end,
+    dependencies = { {'nvim-tree/nvim-web-devicons'}}
+  }
 }
