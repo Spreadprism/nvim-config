@@ -86,10 +86,23 @@ return {
       vim.keymap.set('n', '<leader>scG', builtin.current_buffer_fuzzy_find, {desc="Grep current file"})
       vim.keymap.set('n', '<leader>sce', function () require('telescope.builtin').diagnostics{bufnr=0} end, {desc="Search errors"})
 
+      -- INFO: Search configs
+      local telescopeConfig = require("telescope.config")
+
+      -- Clone the default Telescope configuration
+      local vimgrep_arguments = { unpack(telescopeConfig.values.vimgrep_arguments) }
+      -- I want to search in hidden/dot files.
+      table.insert(vimgrep_arguments, "--hidden")
+      -- I don't want to search in the `.git` directory.
+      table.insert(vimgrep_arguments, "--glob")
+      table.insert(vimgrep_arguments, "!**/.git/*")
+
       local trouble = require("trouble.providers.telescope")
+
       require('telescope').setup {
         file_ignore_patterns = { "%.env" },
         defaults = {
+          vimgrep_arguments = vimgrep_arguments,
           mappings = {
             i = {
               ["<Tab>"] = require("telescope.actions").move_selection_next,
@@ -98,7 +111,13 @@ return {
               ["<c-t>"] = trouble.open_with_trouble
             },
           }
-        }
+        },
+        pickers = {
+          find_files = {
+            -- `hidden = true` will still show the inside of `.git/` as it's not `.gitignore`d.
+            find_command = { "rg", "--files", "--hidden", "--glob", "!**/.git/*" },
+          },
+        },
       }
     end
   },
