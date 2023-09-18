@@ -18,15 +18,15 @@ return {
             position = "right",
             size = 30
         },
-        -- {
-        --     elements = {
-        --         {
-        --             id = "console",
-        --             size = 1
-        --         }
-        --     },
-        --     position = "bottom",
-        --     size = 17
-        -- }
+        {
+            elements = {
+                {
+                    id = "console",
+                    size = 1
+                }
+            },
+            position = "bottom",
+            size = 17
+        }
     }
 }
