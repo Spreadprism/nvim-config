@@ -31,7 +31,8 @@ return function()
 
   -- lua
   lspconfig.lua_ls.setup {  }
-
+  -- xml
+  lspconfig.lemminx.setup{}
   -- python
   lspconfig.pyright.setup {
     on_attach = pyright_attach,
