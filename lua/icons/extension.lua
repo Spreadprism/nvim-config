@@ -35,4 +35,9 @@ return {
     color = "#9D9D9D",
     name = "bin"
   },
+  ["ipynb"] = {
+    icon = "",
+    color = "#F87D15",
+    name = "ipynb"
+  },
 }
