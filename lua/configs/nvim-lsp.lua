@@ -9,7 +9,7 @@ local function pyright_attach(client, bufnr)
   -- More keybindings can be added as needed
 end
 
-return function() 
+return function()
   local lspconfig = require('lspconfig')
 
 

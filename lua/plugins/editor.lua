@@ -12,6 +12,7 @@ return {
   {
     'echasnovski/mini.indentscope',
     version = '*',
+    event = "VeryLazy",
     config = function ()
       require('mini.indentscope').setup({})
     end
@@ -19,12 +20,14 @@ return {
   {
     "echasnovski/mini.surround",
     version = "*",
+    event = "VeryLazy",
     config = function ()
       require('mini.surround').setup({})
     end
   },
   {
-    "jiangmiao/auto-pairs"
+    "jiangmiao/auto-pairs",
+    event = "VeryLazy",
   },
   {
     "folke/which-key.nvim",
@@ -123,6 +126,7 @@ return {
   },
   {
     "ellisonleao/dotenv.nvim",
+    event = "VeryLazy",
     config = function()
       require('dotenv').setup()
     end
@@ -158,6 +162,7 @@ return {
     "folke/todo-comments.nvim",
     lazy=false,
     dependencies = { "nvim-lua/plenary.nvim" },
+    event = "VeryLazy",
     config = function ()
       require("todo-comments").setup({})
 
@@ -177,7 +182,7 @@ return {
     opts = {
       -- add any options here
     },
-    lazy = false,
+    event = "VeryLazy",
   },
   {
      "iamcco/markdown-preview.nvim",
@@ -190,6 +195,6 @@ return {
 			-- 	endfunction
 			-- 	let g:mkdp_browserfunc = 'OpenMarkdownPreview'
 			-- ]]
-		end, 
+		end,
   }
 }
