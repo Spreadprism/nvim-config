@@ -8,7 +8,7 @@ return {
   },
   {
     "kdheepak/lazygit.nvim",
-    cmd = "LazyGit",
+    event = "VeryLazy",
     -- optional for floating window border decoration
     dependencies = {
       "nvim-lua/plenary.nvim",
