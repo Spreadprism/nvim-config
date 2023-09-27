@@ -9,6 +9,8 @@ M.n = {
   ["<C-k>"] = {"<cmd>TmuxNavigateUp<CR>", "Navigate window up", { noremap = true }},
   -- Open Lazygit
   ["<leader>gg"] = {"<cmd>LazyGit<CR>", "Open lazygit"},
+  -- moving
+  ["L"] = {"g_", "move the cursor to the last non-whitespace character", {noremap = true}},
   -- closing and saving
   ["<C-q>"] = {":qa<CR>", "close", {silent = true}},
   -- code manipulation
@@ -55,7 +57,8 @@ M.v = {
   ["<A-K>"] = {"yP", "Copy up", {silent = true}},
   ["/"] = {"gcgv", "toggle comment", {silent = true}},
   -- code selection
-  ["A"] = {"ggVG", "Select all", {silent = true}}
+  -- ["A"] = {"ggVG", "Select all", {silent = true}}
+  ["L"] = {"g_", "move the cursor to the last non-whitespace character", {noremap = true}},
 }
 
 return M
