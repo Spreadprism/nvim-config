@@ -51,7 +51,7 @@ end
     if full_dir_path ~= nil then
       return full_dir_path.."/bin/python"
     else
-      return "/usr/bin/python3.11"
+      return os.getenv("HOME").."/miniconda3/bin/python"
     end
   end
 
