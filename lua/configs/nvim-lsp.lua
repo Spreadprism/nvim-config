@@ -1,17 +1,20 @@
-local function pyright_attach(client, bufnr)
-  -- Example: Keybindings for LSP features (optional)
-  local opts = { noremap=true, silent=false }
-  vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>cf', function()
-    print("LOADING BUFFER")
-    local current_buffer = vim.fn.bufname(vim.fn.bufnr(''))
-    print(current_buffer)
-  end, opts)
-  -- More keybindings can be added as needed
-end
+-- local function pyright_attach(client, bufnr)
+--   -- Example: Keybindings for LSP features (optional)
+--   local opts = { noremap=true, silent=false }
+--   vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>cf', function()
+--     print("LOADING BUFFER")
+--     local current_buffer = vim.fn.bufname(vim.fn.bufnr(''))
+--     print(current_buffer)
+--   end, opts)
+--   -- More keybindings can be added as needed
+-- end
+
+-- local function base_attach(client, bufnr)
+--   print("ATTACHING")
+-- end
 
 return function()
   local lspconfig = require('lspconfig')
-
 
   vim.diagnostic.config({
     update_in_insert=true,
@@ -21,6 +24,7 @@ return function()
 
   local lsp_defaults = lspconfig.util.default_config
   -- Default LSP configs
+  -- lsp_defaults.on_attach = vim.tbl_deep_extend('force', lsp_defaults.on_attach, base_attach)
   lsp_defaults.capabilities = vim.tbl_deep_extend(
     'force',
     lsp_defaults.capabilities,
@@ -33,9 +37,10 @@ return function()
   lspconfig.lua_ls.setup {  }
   -- xml
   lspconfig.lemminx.setup {  }
+
   -- python
   lspconfig.pyright.setup {
-    on_attach = pyright_attach,
+    -- on_attach = pyright_attach,
     settings = {
       python = {
         pythonPath = require("utility.python_env_manager").get_python_path(),
@@ -64,6 +69,17 @@ return function()
 
   -- dockerfile 
   lspconfig.dockerls.setup { }
+
+  -- -- bash
+  -- lspconfig.bashls.setup{
+  --   settings = {
+  --     {
+  --       bashIde = {
+  --         globPattern = "!(*.env|*@(.sh|.inc|.bash|.command))"
+  --       }
+  --     }
+  --   }
+  -- }
 
   -- go
   local util = require "lspconfig/util"

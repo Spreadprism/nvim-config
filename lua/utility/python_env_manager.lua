@@ -37,22 +37,24 @@ function M.get_venv_dir()
   end
 end
 
-  function M.get_venv_dir_name()
-    local full_dir_path = M.get_venv_dir()
-    if full_dir_path ~= nil then
-      return vim.fn.fnamemodify(full_dir_path, ":t")
-    else
-      return "base"
-    end
+function M.get_venv_dir_name()
+  local full_dir_path = M.get_venv_dir()
+  if full_dir_path ~= nil then
+    return vim.fn.fnamemodify(full_dir_path, ":t")
+  else
+    return "base"
   end
+end
 
-  function M.get_python_path()
-    local full_dir_path = M.get_venv_dir()
-    if full_dir_path ~= nil then
-      return full_dir_path.."/bin/python"
-    else
-      return os.getenv("HOME").."/miniconda3/bin/python"
-    end
+function M.get_python_path()
+  local full_dir_path = M.get_venv_dir()
+  if full_dir_path ~= nil then
+    return full_dir_path.."/bin/python"
+  else
+    local path = os.getenv("HOME").."/miniconda3/bin/python"
+    -- print(path) -- for debugging purposes
+    return path
   end
+end
 
-  return M
+return M

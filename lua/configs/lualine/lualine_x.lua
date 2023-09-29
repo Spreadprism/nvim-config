@@ -15,12 +15,10 @@ local colors = {
 -- LSP clients attached to buffer
 local clients_lsp = function ()
     local bufnr = vim.api.nvim_get_current_buf()
-  
     local clients = vim.lsp.buf_get_clients(bufnr)
     if next(clients) == nil then
       return "  "..'No lsp'
     end
-  
     local c = {}
     for _, client in pairs(clients) do
         local name = client.name
@@ -31,7 +29,6 @@ local clients_lsp = function ()
             table.insert(c, name)
         end
     end
-    local venv = os.execute("")
     return "  " .. table.concat(c, '|')
   end
 

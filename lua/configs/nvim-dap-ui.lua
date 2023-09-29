@@ -1,32 +1,29 @@
+
 return {
-    layouts = {
+  layouts = {
+    {
+      elements = {
         {
-            elements = {
-                {
-                    id = "watches",
-                    size = 0.4
-                },
-                {
-                    id = "scopes",
-                    size = 0.4
-                },
-                {
-                    id = "repl",
-                    size = 0.2
-                },
-            },
-            position = "right",
-            size = 30
+          id = "repl",
+          size = 1
+        },
+      },
+      position = "right",
+      size = 0.25
+    },
+    {
+      elements = {
+        {
+          id = "watches",
+          size = 0.5
         },
         {
-            elements = {
-                {
-                    id = "console",
-                    size = 1
-                }
-            },
-            position = "bottom",
-            size = 17
-        }
-    }
+          id = "console",
+          size = 0.5
+        },
+      },
+      position = "bottom",
+      size = 0.3
+    },
+  },
 }

@@ -2,7 +2,7 @@ return function ()
   -- Set breakpoint
   vim.fn.sign_define('DapBreakpoint', {text='', texthl='ErrorMsg', linehl='', numhl=''})
   vim.cmd('highlight DapStoppedSign guifg=#87D285')
-  vim.fn.sign_define('DapStopped', {text='', texthl='DapStoppedSign', linehl='', numhl=''})
+  vim.fn.sign_define('DapStopped', {text='', texthl='DapStoppedSign', linehl='DapStoppedSign', numhl=''})
 
   vim.keymap.set('n', '<F5>', function() vim.cmd('wa') require('dap').continue() end)
   vim.keymap.set('n', '<F10>', function() require('dap').step_over() end)
@@ -20,11 +20,11 @@ return function ()
   vim.keymap.set('n', '<leader>de', function() require("dapui").eval() end)
   vim.keymap.set('n', '<leader>dr', function() require("dapui").float_element('repl',{}) end)
 
-  local dap = require('dap')
-
- --  dap.defaults.fallback.external_terminal = {
- --    command = "tmux",
- --    args = { "split-pane", "-c", vim.fn.getcwd(), "-p", "20", "-d"},
- --  }
- --  dap.defaults.fallback.force_external_terminal = true
+  -- local dap = require('dap')
+  --
+  -- dap.defaults.fallback.external_terminal = {
+  --   command = "tmux",
+  --   args = { "split-pane", "-c", vim.fn.getcwd(), "-p", "20", "-d"},
+  -- }
+  -- dap.defaults.fallback.force_external_terminal = true
 end

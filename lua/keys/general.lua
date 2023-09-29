@@ -33,6 +33,7 @@ M.n = {
   ["<leader>li"] = {":LspInfo<CR>", "Open Lazy", {silent = true}},
   ["<leader>lr"] = {":LspRestart<CR>", "Open Lazy", {silent = true}},
   ["<leader>L"] = {":Lazy<CR>", "Open Lazy", {silent = true}},
+  -- nvim dap
 }
 M.t = {
   -- terminal
