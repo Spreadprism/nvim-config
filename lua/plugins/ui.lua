@@ -95,6 +95,12 @@ return {
       },
     },
   },
+  {
+    'karb94/neoscroll.nvim',
+    config = function ()
+     require('neoscroll').setup()
+    end
+  },
   -- {
   --   'goolord/alpha-nvim',
   --   dependencies = { 'nvim-tree/nvim-web-devicons' },
