@@ -40,4 +40,9 @@ return {
     color = "#F87D15",
     name = "ipynb"
   },
+  ["java"] = {
+    icon = "",
+    color = "#ED1D29",
+    name = "java"
+  },
 }

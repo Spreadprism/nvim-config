@@ -17,6 +17,26 @@ return {
     end
   },
   {
+    "mfussenegger/nvim-jdtls",
+    ft = "java",
+    dependencies = "mfussenegger/nvim-dap",
+    config = function ()
+      local config = {
+        cmd = {'/usr/share/java/jdtls/bin/jdtls'},
+        root_dir = vim.fs.dirname(vim.fs.find({'gradlew', '.git', 'mvnw'}, { upward = true })[1]),
+        init_options = {
+          bundles = {
+            vim.fn.glob("/usr/share/java-debug/com.microsoft.java.debug.plugin.jar", 1)
+          }
+        }
+      }
+      require('jdtls').start_or_attach(config)
+      -- 
+      vim.keymap.set('n', '<leader>dlc', function() require('jdtls.dap').setup_dap_main_class_configs() end)
+    end
+
+  },
+  {
     'mfussenegger/nvim-dap-python',
     ft = "python",
     dependencies = {

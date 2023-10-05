@@ -4,8 +4,12 @@ return {
     {
       elements = {
         {
+          id = "watches",
+          size = 0.5
+        },
+        {
           id = "repl",
-          size = 1
+          size = 0.5
         },
       },
       position = "right",
@@ -14,12 +18,8 @@ return {
     {
       elements = {
         {
-          id = "watches",
-          size = 0.5
-        },
-        {
           id = "console",
-          size = 0.5
+          size = 1
         },
       },
       position = "bottom",

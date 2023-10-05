@@ -70,6 +70,11 @@ return function()
   -- dockerfile 
   lspconfig.dockerls.setup { }
 
+  -- java
+  -- lspconfig.java_language_server.setup{
+  --   cmd = {"java-language-server"}
+  -- }
+
   -- -- bash
   -- lspconfig.bashls.setup{
   --   settings = {
