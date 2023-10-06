@@ -161,7 +161,6 @@ return {
   },
   {
     "folke/todo-comments.nvim",
-    lazy=false,
     dependencies = { "nvim-lua/plenary.nvim" },
     event = "VeryLazy",
     config = function ()
@@ -200,6 +199,7 @@ return {
   },
   {
     'ThePrimeagen/harpoon',
+    event = "VeryLazy",
     dependencies = 'nvim-telescope/telescope.nvim',
     configs = function ()
       require('harpoon').setup({

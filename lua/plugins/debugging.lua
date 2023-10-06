@@ -59,5 +59,19 @@ return {
       require("dap-go").setup({})
       require('dap.ext.vscode').load_launchjs(nil, {})
     end
+  },
+  {
+    "RRethy/vim-illuminate",
+    event = "VeryLazy",
+    config = function ()
+      require('illuminate').configure({
+        delay = 200,
+        large_file_cutoff = 2000,
+        large_file_overrides = {
+          providers = { "lsp" },
+        },
+        under_cursor = false,
+      })
+    end
   }
 }
