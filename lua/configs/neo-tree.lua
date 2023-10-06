@@ -2,13 +2,26 @@ return function ()
   vim.g.neo_tree_root_folder = 'name'
   require("neo-tree").setup({
     close_if_last_window = true,
-    use_popups_for_input = false,
+    use_popups_for_input = true,
+    popup_border_style = "rounded",
     filesystem = {
       group_empty_dir = true,
       filtered_items = {
         visible = false, -- when true, they will just be displayed differently than normal items
         hide_dotfiles = false,
         hide_gitignored = false,
+      },
+    },
+    window = {
+      mappings = {
+        ["a"] = { 
+          "add",
+          -- this command supports BASH style brace expansion ("x{a,b,c}" -> xa,xb,xc). see `:h neo-tree-file-actions` for details
+          -- some commands may take optional config options, see `:h neo-tree-mappings` for details
+          config = {
+            show_path = "relative" -- "none", "relative", "absolute"
+          }
+        },
       },
     },
     event_handlers = {
@@ -47,7 +60,7 @@ return function ()
       },
       git_status = {
         symbols = {
-          added     = "", 
+          added     = "",
           modified  = "",
           untracked = "",
           ignored   = "",

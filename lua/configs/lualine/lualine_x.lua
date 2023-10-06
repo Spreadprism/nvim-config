@@ -11,7 +11,6 @@ local colors = {
     blue     = '#51afef',
     red      = '#ec5f67',
 }
-
 -- LSP clients attached to buffer
 local clients_lsp = function ()
     local bufnr = vim.api.nvim_get_current_buf()
@@ -33,19 +32,19 @@ local clients_lsp = function ()
   end
 
 return {
-    {
-        clients_lsp
+  {
+    clients_lsp
+  },
+  {
+    'diagnostics',
+    sources = { 'nvim_diagnostic' },
+    symbols = { error = ' ', warn = ' ', info = ' ' },
+    diagnostics_color = {
+      color_error = { fg = colors.red },
+      color_warn = { fg = colors.yellow },
+      color_info = { fg = colors.cyan },
     },
-    {
-        'diagnostics',
-        sources = { 'nvim_diagnostic' },
-        symbols = { error = ' ', warn = ' ', info = ' ' },
-        diagnostics_color = {
-            color_error = { fg = colors.red },
-            color_warn = { fg = colors.yellow },
-            color_info = { fg = colors.cyan },
-        },
-        sections = { 'error', 'warn', 'info' },
-        always_visible = true
-    }
+    sections = { 'error', 'warn', 'info' },
+    always_visible = true
+  }
 }

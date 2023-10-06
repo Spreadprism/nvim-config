@@ -27,13 +27,18 @@ M.n = {
   ["<leader>xa"] = {":%bd<CR>", "Close all buffers", {noremap = true, silent = true}},
   ["<leader>xo"] = {":%bd|e#|bd#<CR>", "Close other buffers", {noremap = true, silent = true}},
   -- Bufferline navigation
-  ["<A-h>"] = {":BufferLineCyclePrev<CR>", "Previous buffer", {silent = true}},
-  ["<A-l>"] = {":BufferLineCycleNext<CR>", "Next buffer", {silent = true}},
+  -- ["<A-h>"] = {":BufferLineCyclePrev<CR>", "Previous buffer", {silent = true}},
+  -- ["<A-l>"] = {":BufferLineCycleNext<CR>", "Next buffer", {silent = true}},
   -- Lsp management
   ["<leader>li"] = {":LspInfo<CR>", "Open Lazy", {silent = true}},
   ["<leader>lr"] = {":LspRestart<CR>", "Open Lazy", {silent = true}},
   ["<leader>L"] = {":Lazy<CR>", "Open Lazy", {silent = true}},
-  -- nvim dap
+  -- Harpoon
+  ["<leader>hm"] = {"<CMD>lua require('harpoon.mark').toggle_file()<CR>", "Harpoon mark toggle"},
+  ["<A-l>"] = {"<CMD>lua require('harpoon.ui').nav_next()<CR>", "Next mark"},
+  ["<A-h>"] = {"<CMD>lua require('harpoon.ui').nav_prev()<CR>", "Previous mark"},
+  ["<leader>hcm"] = {"<CMD>lua require('harpoon.mark').clear_all()<CR>", "Clear all marks"},
+  ["<leader>sm"] = {"<CMD>Telescope harpoon marks<CR>", "Search marks"},
 }
 M.t = {
   -- terminal

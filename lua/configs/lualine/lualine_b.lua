@@ -8,5 +8,5 @@ end
 return {
     "branch",
     { "filetype", icon_only = true, separator = "", padding = { left = 1, right = 0 }, cond = notInNeotree },
-    { "filename", path = 1, symbols = { modified = "󱇧", readonly = "󰷊", unnamed = "" }, cond = notInNeotree }
+    { "filename", path = 0, symbols = { modified = "󱇧", readonly = "󰷊", unnamed = "" }, cond = notInNeotree }
 }

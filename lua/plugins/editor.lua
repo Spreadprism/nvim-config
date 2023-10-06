@@ -44,6 +44,7 @@ return {
         ["<leader>b"] = { name = "+buffer" },
         ["<leader>c"] = { name = "+code" },
         ["<leader>f"] = { name = "+file/find" },
+        ["<leader>h"] = { name = "+harpoon" },
         ["<leader>g"] = { name = "+git" },
         ["<leader>gh"] = { name = "+hunks" },
         ["<leader>q"] = { name = "+quit/session" },
@@ -196,5 +197,15 @@ return {
 			-- 	let g:mkdp_browserfunc = 'OpenMarkdownPreview'
 			-- ]]
 		end,
+  },
+  {
+    'ThePrimeagen/harpoon',
+    dependencies = 'nvim-telescope/telescope.nvim',
+    configs = function ()
+      require('harpoon').setup({
+
+      })
+      require("telescope").load_extension('harpoon')
+    end
   }
 }

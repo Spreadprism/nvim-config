@@ -67,38 +67,54 @@ return {
       })
     end
   },
-  {
-    "akinsho/bufferline.nvim",
-    event = "VeryLazy",
-    dependencies = "nvim-tree/nvim-web-devicons",
-    opts = {
-      options = {
-        diagnostics = "nvim_lsp",
-        diagnostics_indicator = function(count, level, diagnostics_dict, context)
-          if level:match("error") then
-            return " "
-          end
-          return ""
-        end,
-        numbers = "ordinal",
-        separator_style = "slant",
-        modified_icon = "󱇧",
-        offsets = {
-          {
-            filetype = "neo-tree",
-            text = "Neo-tree",
-            highlight = "Directory",
-            text_align = "left",
-          },
-
-        },
-      },
-    },
-  },
+  -- {
+  --   "akinsho/bufferline.nvim",
+  --   event = "VeryLazy",
+  --   dependencies = "nvim-tree/nvim-web-devicons",
+  --   opts = {
+  --     options = {
+  --       diagnostics = "nvim_lsp",
+  --       diagnostics_indicator = function(count, level, diagnostics_dict, context)
+  --         if level:match("error") then
+  --           return " "
+  --         end
+  --         return ""
+  --       end,
+  --       numbers = "ordinal",
+  --       separator_style = "slant",
+  --       modified_icon = "󱇧",
+  --       offsets = {
+  --         {
+  --           filetype = "neo-tree",
+  --           text = "Neo-tree",
+  --           highlight = "Directory",
+  --           text_align = "left",
+  --         },
+  --
+  --       },
+  --     },
+  --   },
+  -- },
   {
     'karb94/neoscroll.nvim',
+    event = "VeryLazy",
     config = function ()
-     require('neoscroll').setup()
+     require('neoscroll').setup({stop_eof = false})
+    end
+  },
+  {
+    "kiyoon/jupynium.nvim",
+    event = "VeryLazy",
+    build = "conda run --no-capture-output -n jupynium pip install .",
+    config = function ()
+      require('jupynium').setup({
+        python_host = { "conda", "run", "--no-capture-output", "-n", "jupynium", "python" },
+        jupyter_command = { "conda", "run", "--no-capture-output", "-n", "base", "jupyter" },
+        auto_start_server = {
+          enable = true,
+          file_pattern = { "*.ju.*" },
+        },
+      })
     end
   },
   -- {
