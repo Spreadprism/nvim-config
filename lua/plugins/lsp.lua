@@ -9,6 +9,7 @@ return {
         dependencies = { "rafamadriz/friendly-snippets" },
       },
       {"hrsh7th/cmp-nvim-lsp"},
+      {"folke/neoconf.nvim"}
     },
     opts = {
       diagnostics = {
@@ -77,5 +78,5 @@ return {
         end
       })
     end
-  }
+  },
 }

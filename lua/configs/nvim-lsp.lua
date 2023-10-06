@@ -14,8 +14,12 @@
 -- end
 
 return function()
+  require("neoconf").setup({
+    -- override any of the default settings here
+  })
   local lspconfig = require('lspconfig')
 
+  local neotest_namespace = vim.api.nvim_create_namespace("neotest")
   vim.diagnostic.config({
     update_in_insert=true,
   })

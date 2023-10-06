@@ -39,6 +39,12 @@ M.n = {
   ["<A-h>"] = {"<CMD>lua require('harpoon.ui').nav_prev()<CR>", "Previous mark"},
   ["<leader>hcm"] = {"<CMD>lua require('harpoon.mark').clear_all()<CR>", "Clear all marks"},
   ["<leader>sm"] = {"<CMD>Telescope harpoon marks<CR>", "Search marks"},
+  -- tests
+  ["<leader>to"] = {"<CMD>lua require('neotest').summary.toggle()<CR>", "Open tests summary"},
+  ["<leader>tc"] = {"<CMD>lua require('neotest').run.run()<CR>", "Test current function"},
+  ["<leader>tf"] = {"<CMD>lua require('neotest').run.run(vim.fn.expand('%'))<CR>", "Test current file"},
+  ["<leader>tp"] = {"<CMD>lua require('neotest').run.run(vim.fn.getcwd())<CR>", "Test project"},
+
 }
 M.t = {
   -- terminal
