@@ -1,6 +1,10 @@
 {
     "diagnostics.globals": [
         "vim",
-        "load_textobjects"
+        "load_textobjects",
+        "lfs"
+    ],
+    "workspace.library": [
+        "${3rd}/lfs/library"
     ]
 }

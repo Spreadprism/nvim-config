@@ -2,49 +2,19 @@ local M = {}
 
 -- Available options silent & noremap
 M.n = {
-  -- Tmux navigation
-  ["<C-w>"] = {"<cmd>TmuxNavigateLeft<CR>", "Navigate window left", { noremap = true }},
-  ["<C-l>"] = {"<cmd>TmuxNavigateRight<CR>", "Navigate window right", { noremap = true }},
-  ["<C-j>"] = {"<cmd>TmuxNavigateDown<CR>", "Navigate window down", { noremap = true }},
-  ["<C-k>"] = {"<cmd>TmuxNavigateUp<CR>", "Navigate window up", { noremap = true }},
   -- Open Lazygit
   ["<leader>gg"] = {"<cmd>LazyGit<CR>", "Open lazygit"},
   -- moving
   ["L"] = {"g_", "move the cursor to the last non-whitespace character", {noremap = true}},
   -- closing and saving
   ["<C-q>"] = {":qa<CR>", "close", {silent = true}},
-  -- code manipulation
-  ["<A-J>"] = {"Vyp", "Copy down", {silent = true}},
-  ["<A-K>"] = {"VyP", "Copy up", {silent = true}},
-  ["<A-j>"] = {"<cmd>move +1<CR>==", "Move down", {silent = true}},
-  ["<A-k>"] = {"<cmd>move -2<CR>==", "Move up", {silent = true}},
-  ["<A-o>"] = {"o<ESC>k", "Insert space under", {silent = true}},
-  ["<A-O>"] = {"O<ESC>j", "Insert space over", {silent = true}},
   -- file keymaps
   ["<leader>e"] = {":Neotree toggle<CR>", "Toggle file explorer", {noremap = true, silent = true}},
   -- Buffers manipulation
-  ["<leader>xx"] = {":bd!<CR>", "Close current buffer", {noremap = true, silent = true}},
-  ["<leader>xa"] = {":%bd<CR>", "Close all buffers", {noremap = true, silent = true}},
-  ["<leader>xo"] = {":%bd|e#|bd#<CR>", "Close other buffers", {noremap = true, silent = true}},
-  -- Bufferline navigation
-  -- ["<A-h>"] = {":BufferLineCyclePrev<CR>", "Previous buffer", {silent = true}},
-  -- ["<A-l>"] = {":BufferLineCycleNext<CR>", "Next buffer", {silent = true}},
-  -- Lsp management
-  ["<leader>li"] = {":LspInfo<CR>", "Open Lazy", {silent = true}},
-  ["<leader>lr"] = {":LspRestart<CR>", "Open Lazy", {silent = true}},
+  -- ["<leader>xx"] = {":bd!<CR>", "Close current buffer", {noremap = true, silent = true}},
+  -- ["<leader>xa"] = {":%bd<CR>", "Close all buffers", {noremap = true, silent = true}},
+  -- ["<leader>xo"] = {":%bd|e#|bd#<CR>", "Close other buffers", {noremap = true, silent = true}},
   ["<leader>L"] = {":Lazy<CR>", "Open Lazy", {silent = true}},
-  -- Harpoon
-  ["<leader>hm"] = {"<CMD>lua require('harpoon.mark').toggle_file()<CR>", "Harpoon mark toggle"},
-  ["<A-l>"] = {"<CMD>lua require('harpoon.ui').nav_next()<CR>", "Next mark"},
-  ["<A-h>"] = {"<CMD>lua require('harpoon.ui').nav_prev()<CR>", "Previous mark"},
-  ["<leader>hcm"] = {"<CMD>lua require('harpoon.mark').clear_all()<CR>", "Clear all marks"},
-  ["<leader>sm"] = {"<CMD>Telescope harpoon marks<CR>", "Search marks"},
-  -- tests
-  ["<leader>to"] = {"<CMD>lua require('neotest').summary.toggle()<CR>", "Open tests summary"},
-  ["<leader>tc"] = {"<CMD>lua require('neotest').run.run()<CR>", "Test current function"},
-  ["<leader>tf"] = {"<CMD>lua require('neotest').run.run(vim.fn.expand('%'))<CR>", "Test current file"},
-  ["<leader>tp"] = {"<CMD>lua require('neotest').run.run(vim.fn.getcwd())<CR>", "Test project"},
-
 }
 M.t = {
   -- terminal
@@ -59,6 +29,7 @@ M.i = {
   ["<C-o>"] = {"<esc>o", "Insert line bellow", {silent = true}},
   ["<S-Tab>"] = {"<C-H>", "Remove tab", {silent = true}},
 }
+
 M.v = {
   -- code manipulation
   ["<Tab>"] = {">gv", "Add tab", {silent = true}},
@@ -67,9 +38,7 @@ M.v = {
   ["<A-k>"] = {":m '<-2<CR>gv=gv", "Move up", {silent = true}},
   ["<A-J>"] = {"yp", "Copy down", {silent = true}},
   ["<A-K>"] = {"yP", "Copy up", {silent = true}},
-  ["/"] = {"gcgv", "toggle comment", {silent = true}},
-  -- code selection
-  -- ["A"] = {"ggVG", "Select all", {silent = true}}
+  ["/"] = {"gcgv", "toggle comment", {}, true},
   ["L"] = {"g_", "move the cursor to the last non-whitespace character", {noremap = true}},
 }
 
