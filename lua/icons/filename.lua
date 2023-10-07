@@ -20,4 +20,14 @@ return {
     color = "#F5BB33",
     name = "env"
   },
+  [".gitignore"] = {
+    icon = "󰊢",
+    color = "#E94D32",
+    name = "gitignore"
+  },
+  ["makefile"] = {
+    icon = "󱁻",
+    color = "#EF5350",
+    name = "makefile"
+  },
 }
