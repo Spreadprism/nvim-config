@@ -45,6 +45,7 @@ return {
         ["<leader>c"] = { name = "+code" },
         ["<leader>f"] = { name = "+file/find" },
         ["<leader>h"] = { name = "+harpoon" },
+        ["<leader>o"] = { name = "+open" },
         ["<leader>t"] = { name = "+test" },
         ["<leader>g"] = { name = "+git" },
         ["<leader>gh"] = { name = "+hunks" },
@@ -187,16 +188,18 @@ return {
     event = "VeryLazy",
   },
   {
-     "iamcco/markdown-preview.nvim",
-		ft = { "markdown" },
+    "iamcco/markdown-preview.nvim",
+    ft = { "markdown" },
 		build = function() vim.fn["mkdp#util#install"]() end,
 		config = function()
-			-- vim.cmd [[
-			-- 	function OpenMarkdownPreview (url)
-			-- 		execute "xdg-open " . a:url
-			-- 	endfunction
-			-- 	let g:mkdp_browserfunc = 'OpenMarkdownPreview'
-			-- ]]
+			vim.cmd [[
+				" function OpenMarkdownPreview (url)
+				" 	execute "!xdg-open " . a:url
+				" endfunction
+    "     let g:mkdp_browserfunc = 'OpenMarkdownPreview'
+        let g:mkdp_auto_close = 0
+        let g:mkdp_theme = 'dark'
+			]]
 		end,
   },
   {
