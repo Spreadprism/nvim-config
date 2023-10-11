@@ -42,7 +42,7 @@ return {
   },
   ["java"] = {
     icon = "",
-    color = "#ED1D29",
+    color = "#EA2D2E",
     name = "java"
   },
 }
