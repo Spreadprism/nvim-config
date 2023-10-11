@@ -5,17 +5,13 @@ local language_servers = {
   "pyright"
 }
 
-local useful_utilities = {
+local external_plugins = {
   "stylua",
   "shfmt",
-  "pyright",
-  "rust-analyzer",
   "debugpy",
   "black",
   "mypy",
   "ruff",
-  "gopls",
-  "lua_ls",
   "eslint-lsp",
   "prettier",
 }
@@ -26,7 +22,7 @@ return {
     event = "VeryLazy",
     build = ":MasonUpdate",
     config = function ()
-      require("mason").setup({ ensure_installed = useful_utilities })
+      require("mason").setup({ ensure_installed = external_plugins })
     end
   },
   {
