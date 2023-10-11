@@ -1,15 +1,17 @@
 return {
   {
+    event = "VeryLazy",
     "neovim/nvim-lspconfig",
     dependencies = {
-      {"hrsh7th/nvim-cmp"},
-      {"hrsh7th/cmp-buffer"},
+      "hrsh7th/nvim-cmp",
+      "hrsh7th/cmp-buffer",
       {
         "L3MON4D3/LuaSnip",
         dependencies = { "rafamadriz/friendly-snippets" },
       },
-      {"hrsh7th/cmp-nvim-lsp"},
-      {"folke/neoconf.nvim"}
+      "hrsh7th/cmp-nvim-lsp",
+      "folke/neoconf.nvim",
+      "williamboman/mason-lspconfig.nvim"
     },
     opts = {
       diagnostics = {
@@ -26,30 +28,6 @@ return {
       }
     },
     config = require "configs.nvim-lsp"
-  },
-  {
-    lazy = false,
-    "williamboman/mason.nvim",
-    cmd = "Mason",
-    build = ":MasonUpdate",
-    config = function()
-      local mason = require("mason")
-
-      mason.setup({
-        ensure_installed = {
-          "stylua",
-          "shfmt",
-          "pyright",
-          "rust-analyzer",
-          "debugpy",
-          "black",
-          "mypy",
-          "ruff",
-          "gopls",
-          "lua_ls"
-        },
-      })
-    end
   },
   {
     "jose-elias-alvarez/null-ls.nvim",
@@ -79,4 +57,11 @@ return {
       })
     end
   },
+  {
+    "mfussenegger/nvim-lint",
+    event = "VeryLazy",
+    config = function ()
+      require "configs.nvim-lint"
+    end
+  }
 }

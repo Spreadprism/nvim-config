@@ -19,7 +19,6 @@ return function()
   })
   local lspconfig = require('lspconfig')
 
-  local neotest_namespace = vim.api.nvim_create_namespace("neotest")
   vim.diagnostic.config({
     update_in_insert=true,
   })
@@ -41,7 +40,6 @@ return function()
   lspconfig.lua_ls.setup {  }
   -- xml
   lspconfig.lemminx.setup {  }
-
   -- python
   lspconfig.pyright.setup {
     -- on_attach = pyright_attach,
@@ -63,6 +61,10 @@ return function()
     }
   }
 
+  lspconfig.tsserver.setup {
+    filetypes = {"typescript", "typescriptreact", "typescript.tsx"},
+    cmd = {"typescript-language-server", "--stdio"}
+  }
   -- rust
   lspconfig.rust_analyzer.setup {
     -- Server-specific settings. See `:help lspconfig-setup`

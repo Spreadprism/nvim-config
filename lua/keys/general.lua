@@ -14,7 +14,8 @@ M.n = {
   -- ["<leader>xx"] = {":bd!<CR>", "Close current buffer", {noremap = true, silent = true}},
   -- ["<leader>xa"] = {":%bd<CR>", "Close all buffers", {noremap = true, silent = true}},
   -- ["<leader>xo"] = {":%bd|e#|bd#<CR>", "Close other buffers", {noremap = true, silent = true}},
-  ["<leader>L"] = {":Lazy<CR>", "Open Lazy", {silent = true}},
+  ["<leader>ol"] = {"<CMD>Lazy<CR>", "Open Lazy", {silent = true}},
+  ["<leader>om"] = {"<CMD>Mason<CR>", "Open Mason", {silent = true}},
 }
 M.t = {
   -- terminal
