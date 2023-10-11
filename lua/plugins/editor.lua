@@ -26,8 +26,9 @@ return {
     end
   },
   {
-    "jiangmiao/auto-pairs",
+    "windwp/nvim-autopairs",
     event = "VeryLazy",
+    opts = {}
   },
   {
     "folke/which-key.nvim",
