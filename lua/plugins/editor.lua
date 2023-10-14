@@ -10,6 +10,9 @@ return {
     config = require "configs.neo-tree",
   },
   {
+    "MunifTanjim/nui.nvim",
+  },
+  {
     'echasnovski/mini.indentscope',
     version = '*',
     event = "VeryLazy",
@@ -69,8 +72,8 @@ return {
   },
   {
     'nvim-telescope/telescope.nvim',
-    event = "VeryLazy",
     dependencies = { 'nvim-lua/plenary.nvim' },
+    event = "VeryLazy",
     config = function ()
       local builtin = require('telescope.builtin')
       -- INFO: general

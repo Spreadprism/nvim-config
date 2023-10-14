@@ -24,6 +24,44 @@ return {
     opts = {
       highlight = { enable = true },
       indent = { enable = true },
+      textobjects = {
+        select = {
+          enable = true,
+          keymaps = {
+            ["af"] = "@function.outer",
+            ["if"] = "@function.inner",
+
+            ["ac"] = "@class.outer",
+            ["ic"] = "@class.inner",
+
+            ["ap"] = "@parameter.outer",
+            ["ip"] = "@parameter.inner",
+
+            ["ai"] = "@conditional.outer",
+            ["ii"] = "@conditional.inner",
+          }
+        },
+        move = {
+          enable = true,
+          set_jumps = true,
+          goto_next_start = {
+            ["]f"] = { query = "@function.outer", desc = "Next function" },
+            ["]c"] = { query = "@class.outer", desc = "Next class" },
+          },
+          goto_next_end = {
+            ["]F"] = "@function.outer",
+            ["]C"] = "@class.outer",
+          },
+          goto_previous_start = {
+            ["[f"] = "@function.outer",
+            ["[c"] = "@class.outer",
+          },
+          goto_previous_end = {
+            ["[F"] = "@function.outer",
+            ["[C"] = "@class.outer",
+          }
+        }
+      },
       ensure_installed = {
         "bash",
         "c",
@@ -59,6 +97,12 @@ return {
     },
     additional_vim_regex_highlighting=false,
     config = function(_, opts)
+      local ts_repeat_move = require "nvim-treesitter.textobjects.repeatable_move"
+
+      -- Repeat movement with ; and ,
+      -- ensure ; goes forward and , goes backward regardless of the last direction
+      vim.keymap.set({ "n", "x", "o" }, ";", ts_repeat_move.repeat_last_move_next)
+      vim.keymap.set({ "n", "x", "o" }, ",", ts_repeat_move.repeat_last_move_previous)
       if type(opts.ensure_installed) == "table" then
         ---@type table<string, boolean>
         local added = {}
@@ -86,5 +130,9 @@ return {
         end
       end
     end,
+  },
+  {
+    "nvim-treesitter/nvim-treesitter-textobjects",
+    dependencies = "nvim-treesitter/nvim-treesitter",
   }
 }

@@ -5,13 +5,9 @@ local language_servers = {
   "pyright"
 }
 
-local external_plugins = {
-  "stylua",
-  "shfmt",
+local external_tools = {
   "debugpy",
   "black",
-  "mypy",
-  "ruff",
   "eslint-lsp",
   "prettier",
 }
@@ -21,16 +17,24 @@ return {
     "williamboman/mason.nvim",
     event = "VeryLazy",
     build = ":MasonUpdate",
-    config = function ()
-      require("mason").setup({ ensure_installed = external_plugins })
+    config = function()
+      require("mason").setup()
+    end
+  },
+  {
+    "WhoIsSethDaniel/mason-tool-installer.nvim",
+    event = "VeryLazy",
+    dependencies = "williamboman/mason.nvim",
+    config = function()
+      require("mason-tool-installer").setup { ensure_installed = external_tools }
     end
   },
   {
     "williamboman/mason-lspconfig.nvim",
     event = "VeryLazy",
     dependencies = "williamboman/mason.nvim",
-    config = function ()
-     require("mason-lspconfig").setup({ ensure_installed = language_servers })
+    config = function()
+      require("mason-lspconfig").setup { ensure_installed = language_servers }
     end
   }
 }
