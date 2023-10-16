@@ -10,6 +10,7 @@ local external_tools = {
   "black",
   "eslint-lsp",
   "prettier",
+  "js-debug-adapter"
 }
 
 return {

@@ -1,3 +1,4 @@
+-- INFO: General configuration
 vim.g.mapleader = " "
 vim.wo.number = true
 vim.o.expandtab = true
@@ -6,30 +7,12 @@ vim.o.tabstop = 2
 vim.o.shiftwidth = 2
 vim.o.updatetime = 300
 
--- vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
--- 	vim.lsp.diagnostic.on_publish_diagnostics, {
--- 		virtual_text = false,
--- 		underline = true,
--- 		signs = true,
--- 	}
--- )
--- vim.filetype.add({
---   extension = {
---     env = "dotenv",
---   },
---   filename = {
---     [".env"] = "dotenv",
---   },
---   pattern = {
---     ["%.env%.[%w_.-]+"] = "dotenv",
---   },
--- })
-
--- Init package manager
+-- INFO: Init packages
 require("init_lazy")
--- Init general keybindings
-require("init_keybinds")
+-- INFO: Init keybinds
+require("keybinds_manager").init_keybinds()
 
+-- INFO: Defining the signs and highlights after loading plugins to overwrite them.
 vim.fn.sign_define("DiagnosticSignError", {text = "", texthl = "DiagnosticSignError"})
 vim.cmd([[highlight DiagnosticUnderlineError guifg=#db4b4b]])
 vim.fn.sign_define("DiagnosticSignWarn", {text = "", texthl = "DiagnosticSignWarn"})

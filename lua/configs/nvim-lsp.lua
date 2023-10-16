@@ -37,7 +37,14 @@ return function()
   -- Language specific configs
 
   -- lua
-  lspconfig.lua_ls.setup {  }
+  lspconfig.lua_ls.setup {
+    Lua = {
+      diagnostics = {
+        -- Get the language server to recognize the `vim` global
+        globals = {'vim'},
+      },
+    },
+  }
   -- xml
   lspconfig.lemminx.setup {  }
   -- python
