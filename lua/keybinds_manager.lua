@@ -41,26 +41,10 @@ local load_mappings = function (mappings)
   end
 end
 
--- TODO: I should add comments on how this function works
-local get_mapping_modules = function ()
-  local lfs = require('lfs')
-  local modules = {}
-  local mapping_modules_folder = os.getenv("HOME").."/.config/nvim/lua/keys"
-  for file in lfs.dir(mapping_modules_folder) do
-    if file ~= "." and file ~= ".." then
-      local extension = string.match(file, "%.lua$")
-      if extension then
-        local module_name = "keys."..string.gsub(file, "%.lua$", "")
-        table.insert(modules, module_name)
-      end
-    end
-  end
-  return modules
-end
-
 M.init_keybinds = function ()
-  -- Get all modules that contains keymaps
-  local modules = get_mapping_modules()
+  local module_utility = require("utility.module_utility")
+  local mapping_path = module_utility.BASE_NEOVIM_LUA_PATH.."/keys"
+  local modules = module_utility.get_modules_in_dir(mapping_path)
 
   -- For each modules, load their keymaps
   for _, module in pairs(modules) do
