@@ -69,7 +69,7 @@ return function()
   }
 
   lspconfig.tsserver.setup {
-    filetypes = {"typescript", "typescriptreact", "typescript.tsx"},
+    filetypes = {"javascript","typescript", "typescriptreact", "typescript.tsx"},
     cmd = {"typescript-language-server", "--stdio"}
   }
   -- rust
