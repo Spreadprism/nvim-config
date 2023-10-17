@@ -60,7 +60,7 @@ return {
   },
   {
     "mxsdev/nvim-dap-vscode-js",
-    event = "VeryLazy",
+    ft = { "javascript", "typescript", "typescriptreact" },
     dependencies = {
       "mfussenegger/nvim-dap",
       "rcarriga/nvim-dap-ui",
