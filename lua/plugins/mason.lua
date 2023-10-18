@@ -2,7 +2,8 @@ local language_servers = {
   "lua_ls",
   "tsserver",
   "gopls",
-  "pyright"
+  "pyright",
+  "eslint-lsp",
 }
 
 local daps_plugins = {
@@ -12,7 +13,6 @@ local daps_plugins = {
 local external_tools = {
   "debugpy",
   "black",
-  "eslint-lsp",
   "prettier",
   "js-debug-adapter"
 }
