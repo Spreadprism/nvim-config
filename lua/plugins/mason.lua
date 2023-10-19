@@ -3,7 +3,6 @@ local language_servers = {
   "tsserver",
   "gopls",
   "pyright",
-  "eslint_lsp",
 }
 
 local daps_plugins = {
