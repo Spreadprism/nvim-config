@@ -32,6 +32,7 @@ return function()
 
 	-- Language specific configs
 
+	local util = require("lspconfig/util")
 	-- lua
 	lspconfig.lua_ls.setup({
 		Lua = {
@@ -69,12 +70,18 @@ return function()
 		cmd = { "typescript-language-server", "--stdio" },
 	})
 	-- rust
-	lspconfig.rust_analyzer.setup({
-		-- Server-specific settings. See `:help lspconfig-setup`
-		settings = {
-			["rust-analyzer"] = {},
-		},
-	})
+	-- lspconfig.rust_analyzer.setup({
+	-- 	filetypes = { "rust" },
+	-- 	root_dir = util.root_pattern("Cargo.toml"),
+	-- 	-- Server-specific settings. See `:help lspconfig-setup`
+	-- 	settings = {
+	-- 		["rust-analyzer"] = {
+	-- 			cargo = {
+	-- 				allFeatures = true,
+	-- 			},
+	-- 		},
+	-- 	},
+	-- })
 
 	-- dockerfile
 	lspconfig.dockerls.setup({})
@@ -97,7 +104,6 @@ return function()
 	})
 
 	-- go
-	local util = require("lspconfig/util")
 	lspconfig.gopls.setup({
 		cmd = { "gopls" },
 		filetypes = { "go", "gomod", "gowork", "gotmpl" },
