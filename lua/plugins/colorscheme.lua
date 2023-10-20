@@ -13,13 +13,13 @@ return {
 		config = function()
 			require("transparent").setup({
 				extra_groups = {
-					"NormalFloat",
-					"FloatBorder",
-					"Telescope",
+					-- "NormalFloat",
+					-- "FloatBorder",
+					-- "WhichKey",
 				},
 				exclude_groups = {},
 			})
-			require("transparent").clear_prefix("NeoTree")
+			-- require("transparent").clear_prefix("NeoTree")
 		end,
 	},
 }
