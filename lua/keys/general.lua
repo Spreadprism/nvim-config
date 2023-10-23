@@ -21,7 +21,27 @@ M.n = {
 	-- ["<leader>xo"] = {":%bd|e#|bd#<CR>", "Close other buffers", {noremap = true, silent = true}},
 	["<leader>ol"] = { "<CMD>Lazy<CR>", "Open Lazy", { silent = true } },
 	["<leader>om"] = { "<CMD>Mason<CR>", "Open Mason", { silent = true } },
+	-- INFO: Needs npm install -g clipboard-cli
+	["<leader>yf"] = {
+		function()
+			local bufname = vim.api.nvim_buf_get_name(0)
+			vim.cmd("silent! !echo " .. bufname .. " | clipboard")
+			print("Saved buffer's relative path to the clipboard.")
+		end,
+		"Save buffer's relative path to the clipboard.",
+		{ silent = true },
+	},
+	["<leader>yF"] = {
+		function()
+			local bufname = vim.api.nvim_buf_get_name(0)
+			vim.cmd("silent! !echo " .. bufname .. " | clipboard")
+			print("Saved buffer's absolute path in the clipboard.")
+		end,
+		"Save buffer's absolute path in the clipboard.",
+		{ silent = true },
+	},
 }
+
 M.t = {
 	-- terminal
 	["<C-;>"] = { '<C-\\><C-n><CR>:lua require("nvterm.terminal").toggle "horizontal"<CR>', "", { silent = true } },
@@ -46,6 +66,7 @@ M.v = {
 	["<A-K>"] = { "yP", "Copy up", { silent = true } },
 	["/"] = { "gcgv", "toggle comment", {}, true },
 	["L"] = { "g_", "move the cursor to the last non-whitespace character", { noremap = true } },
+	["Y"] = { '"+y', "Yank to clipboard", { silent = true } },
 }
 
 return M

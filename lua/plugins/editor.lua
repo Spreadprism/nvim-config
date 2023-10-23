@@ -49,7 +49,6 @@ return {
 				["["] = { name = "+prev" },
 				["<leader><tab>"] = { name = "+tabs" },
 				["<leader>b"] = { name = "+buffer" },
-				["<leader>f"] = { name = "+file/find" },
 				["<leader>h"] = { name = "+harpoon" },
 				["<leader>o"] = { name = "+open" },
 				["<leader>t"] = { name = "+test" },
