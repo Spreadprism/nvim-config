@@ -24,6 +24,7 @@ M.n = {
 	-- INFO: Needs npm install -g clipboard-cli
 	["<leader>yf"] = {
 		function()
+			-- TODO: Need to make the path actually relative to root
 			local bufname = vim.api.nvim_buf_get_name(0)
 			vim.cmd("silent! !echo " .. bufname .. " | clipboard")
 			print("Saved buffer's relative path to the clipboard.")
