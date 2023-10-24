@@ -156,6 +156,14 @@ return {
 		end,
 	},
 	{
+		-- INFO: fzf syntax
+		-- sbtrkt : fuzzy-match
+		-- 'wild : exact-match (quoted)
+		-- ^music : prefix-exact-match
+		-- .mp3 : suffix-exact-match
+		-- !fire : inverse-exact-match
+		-- !^ : inverse prefix-eact-match
+		-- !. : inverse-suffix-exact-match
 		"nvim-telescope/telescope-fzf-native.nvim",
 		dependencies = "nvim-telescope/telescope.nvim",
 		event = "VeryLazy",

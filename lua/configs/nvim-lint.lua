@@ -10,17 +10,23 @@ lint.linters_by_ft = {
 local ruff = lint.linters.ruff
 
 local function get_file_name()
-	return vim.api.nvim_buf_get_name(0)
+	local name = vim.api.nvim_buf_get_name(0)
+	print(name)
+	return name
 end
+
+local rules_to_ignore = {
+	"F841",
+}
 
 ruff.args = {
 	-- INFO: Base arguments
 	"--force-exclude",
 	"--quiet",
-	"--stdin-filename",
-	get_file_name,
 	"--no-fix",
-	"-",
+	get_file_name,
+	"--ignore",
+	table.concat(rules_to_ignore, ","),
 }
 
 local events = { "TextChanged", "BufReadPost", "BufWritePost" }
