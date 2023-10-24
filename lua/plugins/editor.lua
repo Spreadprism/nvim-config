@@ -48,7 +48,11 @@ return {
 				["]"] = { name = "+next" },
 				["["] = { name = "+prev" },
 				["<leader><tab>"] = { name = "+tabs" },
+				["<leader>a"] = { name = "+actions" },
 				["<leader>b"] = { name = "+buffer" },
+				["<leader>d"] = { name = "+debugging" },
+				["<leader>l"] = { name = "+language server" },
+				["<leader>y"] = { name = "+yank current file info" },
 				["<leader>h"] = { name = "+harpoon" },
 				["<leader>o"] = { name = "+open" },
 				["<leader>t"] = { name = "+test" },
@@ -79,7 +83,6 @@ return {
 		config = function()
 			local builtin = require("telescope.builtin")
 			-- INFO: general
-			vim.keymap.set("n", "<leader>sb", builtin.buffers, { desc = "Search buffer" })
 			vim.keymap.set("n", "<leader>sC", builtin.commands, { desc = "Search commands" })
 			-- INFO: history
 			vim.keymap.set("n", "<leader>shC", builtin.command_history, { desc = "Search commands history" })
@@ -134,6 +137,14 @@ return {
 					},
 				},
 			})
+		end,
+	},
+	{
+		"nvim-telescope/telescope-dap.nvim",
+		dependencies = "nvim-telescope/telescope.nvim",
+		event = "VeryLazy",
+		config = function()
+			require("telescope").load_extension("dap")
 		end,
 	},
 	{

@@ -1,39 +1,18 @@
 return function()
 	-- INFO: Setting DAP icons
 	vim.fn.sign_define("DapBreakpoint", { text = "", texthl = "ErrorMsg", linehl = "", numhl = "" })
+	vim.fn.sign_define("DapBreakpointRejected", { text = "", texthl = "ErrorMsg", linehl = "", numhl = "" })
+	vim.fn.sign_define("DapBreakpointCondition", { text = "󰯲", texthl = "ErrorMsg", linehl = "", numhl = "" })
+	vim.fn.sign_define("DapLogPoint", { text = "", texthl = "DiagnosticSignInfo", linehl = "", numhl = "" })
+
 	vim.cmd("highlight DapStoppedSign guifg=#87D285")
 	vim.fn.sign_define("DapStopped", { text = "", texthl = "DapStoppedSign", linehl = "DapStoppedSign", numhl = "" })
 
-	-- INFO: DAP keymaps
 	local dap = require("dap")
-	vim.keymap.set("n", "<F5>", function()
-		vim.cmd("wa")
-		require("dap").continue()
-	end)
-	vim.keymap.set("n", "<F10>", dap.step_over)
-	vim.keymap.set("n", "<F11>", dap.step_into)
-	vim.keymap.set("n", "<F12>", dap.step_out)
-	vim.keymap.set("n", "<Leader>db", dap.toggle_breakpoint)
-	vim.keymap.set("n", "<Leader>dl", dap.run_last)
-	vim.keymap.set("n", "<Leader>ds", function()
-		require("dap").close()
-		require("dapui").close()
-	end)
 
-	-- INFO: DAPUI keymaps
-	vim.keymap.set("n", "<leader>do", function()
-		require("dapui").toggle()
-	end)
-	vim.keymap.set("n", "<leader>de", function()
-		require("dapui").eval()
-	end)
-	vim.keymap.set("n", "<leader>dr", function()
-		require("dapui").float_element("repl", {})
-	end)
+	-- local mason_bin = os.getenv("HOME") .. "/.local/share/nvim/mason"
 
-	local mason_bin = os.getenv("HOME") .. "/.local/share/nvim/mason"
 	-- INFO: Custom dap configs
-
 	for _, language in ipairs({ "typescript", "javascript", "typescriptreact" }) do
 		dap.configurations[language] = {
 			{

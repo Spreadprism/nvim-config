@@ -1,16 +1,51 @@
---   -- Example: Keybindings for LSP features (optional)
---   local opts = { noremap=true, silent=false }
---   vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>cf', function()
---     print("LOADING BUFFER")
---     local current_buffer = vim.fn.bufname(vim.fn.bufnr(''))
---     print(current_buffer)
---   end, opts)
---   -- More keybindings can be added as needed
--- end
+local function filter(arr, func)
+	-- Filter in place
+	-- https://stackoverflow.com/questions/49709998/how-to-filter-a-lua-array-inplace
+	local new_index = 1
+	local size_orig = #arr
+	for old_index, v in ipairs(arr) do
+		if func(v, old_index) then
+			arr[new_index] = v
+			new_index = new_index + 1
+		end
+	end
+	for i = new_index, size_orig do
+		arr[i] = nil
+	end
+end
 
--- local function base_attach(client, bufnr)
---   print("ATTACHING")
--- end
+local pyright_accessed_filter = function(diagnostic)
+	-- Allow kwargs to be unused, sometimes you want many functions to take the
+	-- same arguments but you don't use all the arguments in all the functions,
+	-- so kwargs is used to suck up all the extras
+	-- if diagnostic.message == '"kwargs" is not accessed' then
+	-- 	return false
+	-- end
+	--
+	-- Allow variables starting with an underscore
+	-- if string.match(diagnostic.message, '"_.+" is not accessed') then
+	-- 	return false
+	-- end
+
+	-- For all messages "is not accessed"
+	if string.match(diagnostic.message, '".+" is not accessed') then
+		return false
+	end
+
+	return true
+end
+
+local custom_on_publish_diagnostics = function(a, params, client_id, c, config)
+	filter(params.diagnostics, pyright_accessed_filter)
+	vim.lsp.diagnostic.on_publish_diagnostics(a, params, client_id, c, config)
+end
+
+local on_attach = function(client, _)
+	if client.name == "pyright" then
+		vim.keymap.set("n", "<Leader>ao", "<CMD>PyrightOrganizeImports<CR>", { desc = "Organize imports" })
+		vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(custom_on_publish_diagnostics, {})
+	end
+end
 
 return function()
 	require("neoconf").setup({
@@ -46,7 +81,7 @@ return function()
 	lspconfig.lemminx.setup({})
 	-- python
 	lspconfig.pyright.setup({
-		-- on_attach = pyright_attach,
+		on_attach = on_attach,
 		settings = {
 			python = {
 				pythonPath = require("utility.python_env_manager").get_python_path(),
@@ -59,6 +94,12 @@ return function()
 							name = "",
 							depth = 3,
 						},
+					},
+					diagnosticSeverityOverrides = {
+						reportUnusedImport = "none",
+						reportUnusedClass = "none",
+						reportUnusedFunction = "none",
+						reportUnusedVariable = "none",
 					},
 				},
 			},
@@ -124,110 +165,14 @@ return function()
 			-- Buffer local mappings.
 			-- See `:help vim.lsp.*` for documentation on any of the below functions
 			local opts = { buffer = ev.buf }
-			vim.keymap.set("n", "gD", vim.lsp.buf.declaration, opts)
-			vim.keymap.set("n", "gd", vim.lsp.buf.definition, opts)
 			vim.keymap.set("n", "K", vim.lsp.buf.hover, opts)
-			vim.keymap.set("n", "gi", vim.lsp.buf.implementation, opts)
-			vim.keymap.set("n", "<space>wa", vim.lsp.buf.add_workspace_folder, opts)
-			vim.keymap.set("n", "<space>wr", vim.lsp.buf.remove_workspace_folder, opts)
-			vim.keymap.set("n", "<space>wl", function()
-				print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
-			end, opts)
 			vim.keymap.set("n", "<space>D", vim.lsp.buf.type_definition, opts)
 			vim.keymap.set("n", "<f2>", vim.lsp.buf.rename, opts)
 
 			vim.keymap.set({ "n", "v" }, "<C-n>", vim.lsp.buf.code_action, opts)
-			vim.keymap.set("n", "<space>f", function()
-				vim.lsp.buf.format({ async = true })
-			end, opts)
+			-- vim.keymap.set("n", "<space>f", function()
+			-- 	vim.lsp.buf.format({ async = true })
+			-- end, opts)
 		end,
 	})
-	-- Setting up auto complete
-	vim.opt.completeopt = { "menu", "menuone", "noselect" }
-	-- local cmp = require("cmp")
-	-- local luasnip = require("luasnip")
-	--
-	-- local select_opts = { behavior = cmp.SelectBehavior.Select }
-	--
-	-- cmp.setup({
-	-- 	snippet = {
-	-- 		expand = function(args)
-	-- 			luasnip.lsp_expand(args.body)
-	-- 		end,
-	-- 	},
-	-- 	sources = {
-	-- 		{ name = "path" },
-	-- 		{ name = "cargo" },
-	-- 		{ name = "nvim_lsp", keyword_length = 1 },
-	-- 		{ name = "buffer", keyword_length = 3 },
-	-- 		{ name = "luasnip", keyword_length = 2 },
-	-- 	},
-	-- 	window = {
-	-- 		documentation = cmp.config.window.bordered(),
-	-- 	},
-	-- 	formatting = {
-	-- 		fields = { "menu", "abbr", "kind" },
-	-- 		format = function(entry, item)
-	-- 			local menu_icon = {
-	-- 				nvim_lsp = "λ",
-	-- 				luasnip = "⋗",
-	-- 				buffer = "Ω",
-	-- 				path = "🖫",
-	-- 			}
-	--
-	-- 			item.menu = menu_icon[entry.source.name]
-	-- 			return item
-	-- 		end,
-	-- 	},
-	-- 	mapping = {
-	-- 		["<Up>"] = cmp.mapping.select_prev_item(select_opts),
-	-- 		["<Down>"] = cmp.mapping.select_next_item(select_opts),
-	--
-	-- 		["<C-p>"] = cmp.mapping.select_prev_item(select_opts),
-	-- 		["<C-n>"] = cmp.mapping.select_next_item(select_opts),
-	--
-	-- 		["<C-u>"] = cmp.mapping.scroll_docs(-4),
-	-- 		["<C-d>"] = cmp.mapping.scroll_docs(4),
-	--
-	-- 		["<C-e>"] = cmp.mapping.abort(),
-	-- 		["<C-y>"] = cmp.mapping.confirm({ select = true }),
-	-- 		["<CR>"] = cmp.mapping.confirm({ select = false }),
-	--
-	-- 		["<C-f>"] = cmp.mapping(function(fallback)
-	-- 			if luasnip.jumpable(1) then
-	-- 				luasnip.jump(1)
-	-- 			else
-	-- 				fallback()
-	-- 			end
-	-- 		end, { "i", "s" }),
-	--
-	-- 		["<C-b>"] = cmp.mapping(function(fallback)
-	-- 			if luasnip.jumpable(-1) then
-	-- 				luasnip.jump(-1)
-	-- 			else
-	-- 				fallback()
-	-- 			end
-	-- 		end, { "i", "s" }),
-	--
-	-- 		["<Tab>"] = cmp.mapping(function(fallback)
-	-- 			local col = vim.fn.col(".") - 1
-	--
-	-- 			if cmp.visible() then
-	-- 				cmp.select_next_item(select_opts)
-	-- 			elseif col == 0 or vim.fn.getline("."):sub(col, col):match("%s") then
-	-- 				fallback()
-	-- 			else
-	-- 				cmp.complete()
-	-- 			end
-	-- 		end, { "i", "s" }),
-	--
-	-- 		["<S-Tab>"] = cmp.mapping(function(fallback)
-	-- 			if cmp.visible() then
-	-- 				cmp.select_prev_item(select_opts)
-	-- 			else
-	-- 				fallback()
-	-- 			end
-	-- 		end, { "i", "s" }),
-	-- 	},
-	-- })
 end

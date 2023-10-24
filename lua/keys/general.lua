@@ -2,8 +2,8 @@ local M = {}
 
 -- Available options silent & noremap
 M.n = {
-	-- Open Lazygit
-	["<leader>gg"] = { "<cmd>LazyGit<CR>", "Open lazygit" },
+	["<leader>og"] = { "<cmd>LazyGit<CR>", "Open lazygit" },
+	["<leader>od"] = { "<cmd>LazyDocker<CR>", "Open lazydocker" },
 	-- moving
 	["L"] = { "g_", "move the cursor to the last non-whitespace character", { noremap = true } },
 	-- closing and saving
