@@ -96,16 +96,6 @@ return {
 		dependencies = "neovim/nvim-lspconfig",
 		ft = { "rust" },
 		config = function()
-			-- TODO: Use vscode lldb instead of the publicy available one
-			-- local vscode_extensions = "/mnt/c/Users/emeri/.vscode/extension/"
-			-- local extension_path = vscode_extensions .. "vadimcn.vscode-lldb-1.9.2/"
-			-- local codelldb_path = extension_path .. "adapter/codelldb"
-			-- local liblldb_path = extension_path .. "lldb/lib/liblldb.so"
-
-			local install_root_dir = vim.fn.stdpath("data") .. "/mason"
-			local extension_path = install_root_dir .. "/packages/codelldb/extension/"
-			-- local codelldb_path = extension_path .. "adapter/codelldb"
-			-- local liblldb_path = extension_path .. "lldb/lib/liblldb.so"
 			local codelldb_path = "/usr/bin/codelldb"
 			local liblldb_path = "/usr/lib/liblldb.so"
 			vim.keymap.set(
