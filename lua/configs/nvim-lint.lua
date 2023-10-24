@@ -17,10 +17,10 @@ end
 
 local rules_to_ignore = {
 	"F841",
+	"F401",
 }
 
 ruff.args = {
-	-- INFO: Base arguments
 	"--force-exclude",
 	"--quiet",
 	"--no-fix",
