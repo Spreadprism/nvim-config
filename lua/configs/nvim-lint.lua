@@ -10,9 +10,7 @@ lint.linters_by_ft = {
 local ruff = lint.linters.ruff
 
 local function get_file_name()
-	local name = vim.api.nvim_buf_get_name(0)
-	print(name)
-	return name
+	return vim.api.nvim_buf_get_name(0)
 end
 
 local rules_to_ignore = {

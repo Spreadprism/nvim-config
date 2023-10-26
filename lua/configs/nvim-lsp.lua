@@ -83,14 +83,21 @@ return function()
 	-- }
 
 	-- -- bash
-	local group = vim.api.nvim_create_augroup("__env", { clear = true })
-	vim.api.nvim_create_autocmd("BufEnter", {
-		pattern = "**/*.env",
-		group = group,
-		callback = function(args)
-			vim.diagnostic.disable(args.buf)
-		end,
-	})
+	-- vim.treesitter.language.register("env", "bash")
+	-- local group = vim.api.nvim_create_augroup("__env", { clear = true })
+	-- vim.api.nvim_create_autocmd("BufEnter", {
+	-- 	pattern = "**/*.env",
+	-- 	group = group,
+	-- 	callback = function(args)
+	-- 		vim.cmd("set filetype=env")
+	-- 		local clients = vim.lsp.buf_get_clients(bufnr)
+	--
+	-- 		for i, client in pairs(clients) do
+	-- 			vim.cmd("LspStop " .. i)
+	-- 		end
+	-- 		-- vim.diagnostic.disable(args.buf)
+	-- 	end,
+	-- })
 
 	lspconfig.bashls.setup({
 		settings = {
