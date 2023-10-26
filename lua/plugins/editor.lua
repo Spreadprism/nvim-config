@@ -67,7 +67,7 @@ return {
 				["<leader>sgb"] = { name = "+current buffer" },
 				["<leader>u"] = { name = "+ui" },
 				["<leader>w"] = { name = "+windows" },
-				["<leader>x"] = { name = "+diagnostics/quickfix" },
+				["<leader>x"] = { name = "+export" },
 			},
 		},
 		config = function(_, opts)

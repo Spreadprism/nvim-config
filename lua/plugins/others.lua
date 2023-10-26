@@ -54,5 +54,14 @@ return {
 			})
 		end,
 	},
+	{
+		"weirongxu/plantuml-previewer.vim",
+		event = "VeryLazy",
+		dependencies = {
+			"tyru/open-browser.vim",
+			"aklt/plantuml-syntax",
+		},
+	},
+
 	-- TODO: Install overseer
 }

@@ -41,6 +41,31 @@ M.n = {
 		"Save buffer's absolute path in the clipboard.",
 		{ silent = true },
 	},
+	["<leader>op"] = {
+		"<cmd>PlantumlOpen<CR>",
+		"Open plantuml preview",
+		{ silent = true },
+	},
+	["<leader>xp"] = {
+		function()
+			local bufname = vim.api.nvim_buf_get_name(0)
+			-- Split the path by '/'
+			local parts = {}
+			for part in string.gmatch(bufname, "([^/]+)") do
+				table.insert(parts, part)
+			end
+
+			-- Get the last part (the filename without extension)
+			local filenameWithoutExtension = parts[#parts]
+
+			-- Extract the filename (without extension) from the last part
+			local filename = string.match(filenameWithoutExtension, "([^%.]+)")
+			filename = filename .. ".png"
+			vim.cmd("silent! PlantumlSave " .. filename)
+			print("Saved to file " .. filename)
+		end,
+		"Export plantuml",
+	},
 }
 
 M.t = {
