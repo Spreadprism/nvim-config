@@ -66,6 +66,16 @@ M.n = {
 		end,
 		"Export plantuml",
 	},
+	["<leader>Or"] = {
+		"<cmd>OverseerRun<CR>",
+		"Overseer run",
+		{ silent = true },
+	},
+	["<leader>oo"] = {
+		"<cmd>OverseerToggle<CR>",
+		"Open Overseer",
+		{ silent = true },
+	},
 }
 
 M.t = {

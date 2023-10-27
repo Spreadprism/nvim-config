@@ -62,6 +62,15 @@ return {
 			"aklt/plantuml-syntax",
 		},
 	},
+	{
+		"stevearc/overseer.nvim",
+		event = "VeryLazy",
+		dependencies = "mfussenegger/nvim-dap",
+		config = function()
+			require("overseer").setup()
+			require("dap.ext.vscode").json_decode = require("overseer.json").decode
+		end,
+	},
 
 	-- TODO: Install overseer
 }

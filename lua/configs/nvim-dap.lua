@@ -10,6 +10,20 @@ return function()
 
 	local dap = require("dap")
 
+	-- INFO: Adding adapters
+	dap.adapters.codelldb = {
+		type = "server",
+		port = "13000",
+		executable = {
+			command = "codelldb",
+			args = { "--port", "13000" },
+		},
+	}
+
+	-- INFO: Load vscode launch.json
+	require("dap.ext.vscode").load_launchjs(nil, {
+		codelldb = { "rust" },
+	})
 	-- local mason_bin = os.getenv("HOME") .. "/.local/share/nvim/mason"
 
 	-- INFO: Custom dap configs
@@ -17,7 +31,7 @@ return function()
 		dap.configurations[language] = {
 			{
 				-- use nvim-dap-vscode-js's pwa-node debug adapter
-				type = "pwa-node",
+				type = "(NVIM-CONFIG) pwa-node",
 				-- launch a new process to attach the debugger to
 				request = "launch",
 				-- name of the debug action you have to select for this config
@@ -28,7 +42,7 @@ return function()
 			},
 			{
 				-- use nvim-dap-vscode-js's pwa-node debug adapter
-				type = "pwa-node",
+				type = "(NVIM-CONFIG) pwa-node",
 				-- attach to an already running node process with --inspect flag
 				-- default port: 9222
 				request = "attach",
@@ -46,7 +60,7 @@ return function()
 				skipFiles = { "${workspaceFolder}/node_modules/**/*.js" },
 			},
 			{
-				name = "Launch chrome debugger (NEXT)",
+				name = "(NVIM-CONFIG) Launch chrome debugger (NEXT)",
 				type = "pwa-chrome",
 				request = "launch",
 				url = "http://localhost:3000",
@@ -59,6 +73,74 @@ return function()
 		}
 	end
 
+	local get_program = function()
+		return vim.fn.input("program: ", vim.loop.cwd() .. "/" .. vim.fn.expand("%f"), "file")
+	end
+	local get_args = function()
+		return vim.split(vim.fn.input("args: ", "", "file"), " ")
+	end
+
+	-- dap.configurations.c = {
+	-- 	{
+	-- 		type = "codelldb",
+	-- 		request = "launch",
+	-- 		cwd = "${workspaceFolder}",
+	-- 		terminal = "integrated",
+	-- 		console = "integratedTerminal",
+	-- 		stopOnEntry = false,
+	-- 		program = get_program,
+	-- 		args = get_args,
+	-- 	},
+	-- }
+	-- dap.configurations.cpp = dap.configurations.c
+	local get_rust_program_debug = function()
+		local directory = vim.fn.getcwd()
+		local program_name = string.match(directory, "[^/]+$")
+		local program = directory .. "/target/debug/" .. program_name
+		return program
+	end
+
+	local overseer = require("overseer")
+
+	-- INFO: RUST CONFIGS
+	overseer.register_template({
+		name = "Rust build debug",
+		builder = function(params)
+			return {
+				cmd = { "cargo" },
+				args = { "build" },
+				name = "Rust build debug",
+			}
+		end,
+	})
+
+	overseer.register_template({
+		name = "rust_build_release",
+		builder = function(params)
+			return {
+				cmd = { "cargo" },
+				args = { "build", "--release" },
+				name = "rust_build_release",
+			}
+		end,
+	})
+
+	dap.configurations.rust = {
+		{
+			name = "(NVIM-CONFIG) Launch debug",
+			type = "codelldb",
+			request = "launch",
+			cwd = "${workspaceFolder}",
+			terminal = "integrated",
+			console = "integratedTerminal",
+			stopOnEntry = false,
+			program = get_rust_program_debug,
+			preLaunchTask = "Rust build debug",
+		},
+	}
+
 	-- INFO: Load vscode launch.json
-	require("dap.ext.vscode").load_launchjs(nil, {})
+	require("dap.ext.vscode").load_launchjs(nil, {
+		codelldb = { "rust" },
+	})
 end

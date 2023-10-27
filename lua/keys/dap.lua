@@ -3,7 +3,26 @@ local M = {}
 M.n = {
 	["<F5>"] = {
 		function()
+			-- RustRunnables
+			-- local current_bufnr = vim.api.nvim_get_current_buf()
+			-- local filetype = vim.api.nvim_buf_get_option(current_bufnr, "filetype")
+			-- if filetype == "rust" then
+			-- 	local sessions = require("dap").sessions()
+			-- 	local sessionActive = false
+			-- 	for _, session in pairs(sessions) do
+			-- 		if session ~= nil and session.is_active ~= nil and session:is_active() then
+			-- 			sessionActive = true
+			-- 			break
+			-- 		end
+			-- 	end
+			-- 	if sessionActive then
+			-- 		require("dap").continue()
+			-- 	else
+			-- 		vim.cmd("RustDebuggables")
+			-- 	end
+			-- else
 			require("dap").continue()
+			-- end
 		end,
 		"DAP start / continue",
 		{ silent = true },
@@ -72,7 +91,7 @@ M.n = {
 	},
 	["<leader>ds"] = {
 		function()
-			require("dap").close()
+			require("dap").terminate()
 			require("dapui").close()
 		end,
 		"Stop debugging session",

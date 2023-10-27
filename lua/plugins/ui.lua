@@ -74,34 +74,16 @@ return {
 			})
 		end,
 	},
-	-- {
-	--   "akinsho/bufferline.nvim",
-	--   event = "VeryLazy",
-	--   dependencies = "nvim-tree/nvim-web-devicons",
-	--   opts = {
-	--     options = {
-	--       diagnostics = "nvim_lsp",
-	--       diagnostics_indicator = function(count, level, diagnostics_dict, context)
-	--         if level:match("error") then
-	--           return " "
-	--         end
-	--         return ""
-	--       end,
-	--       numbers = "ordinal",
-	--       separator_style = "slant",
-	--       modified_icon = "󱇧",
-	--       offsets = {
-	--         {
-	--           filetype = "neo-tree",
-	--           text = "Neo-tree",
-	--           highlight = "Directory",
-	--           text_align = "left",
-	--         },
-	--
-	--       },
-	--     },
-	--   },
-	-- },
+	{
+		"rcarriga/nvim-notify",
+		config = function()
+			require("notify").setup({
+				render = "compact",
+				background_colour = "Normal",
+				stages = "slide",
+			})
+		end,
+	},
 	{
 		"karb94/neoscroll.nvim",
 		event = "VeryLazy",
