@@ -31,10 +31,14 @@ local clients_lsp = function()
 	return " " .. table.concat(c, "|")
 end
 
+local overseer = require("overseer")
 return {
 	{
 		"overseer",
 		unique = true,
+		symbols = {
+			[overseer.STATUS.RUNNING] = "󰦖 ",
+		},
 	},
 	{
 		clients_lsp,
