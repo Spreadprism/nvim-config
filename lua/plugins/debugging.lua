@@ -29,12 +29,22 @@ return {
 						vim.fn.glob("/usr/share/java-debug/com.microsoft.java.debug.plugin.jar", 1),
 					},
 				},
+				on_attach = function(client, bufnr)
+					require("jdtls.dap").setup_dap_main_class_configs()
+				end,
 			}
 			require("jdtls").start_or_attach(config)
 			--
-			vim.keymap.set("n", "<leader>dlc", function()
-				require("jdtls.dap").setup_dap_main_class_configs()
-			end)
+			local events = { "BufWritePost" }
+			for _, value in pairs(events) do
+				vim.api.nvim_create_autocmd({ value }, {
+					callback = function()
+						if vim.bo.filetype == "java" then
+							require("jdtls.dap").setup_dap_main_class_configs()
+						end
+					end,
+				})
+			end
 		end,
 	},
 	{
