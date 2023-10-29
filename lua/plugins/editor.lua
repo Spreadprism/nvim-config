@@ -59,6 +59,7 @@ return {
 				["<leader>g"] = { name = "+git" },
 				["<leader>c"] = { name = "+cargo" },
 				["<leader>gh"] = { name = "+hunks" },
+				["<leader>j"] = { name = "+jupynium" },
 				["<leader>q"] = { name = "+quit/session" },
 				["<leader>s"] = { name = "+search" },
 				["<leader>sc"] = { name = "+current buffer" },

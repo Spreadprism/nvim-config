@@ -100,13 +100,13 @@ return {
 			require("jupynium").setup({
 				-- python_host = { "conda", "run", "--no-capture-output", "-n", "jupynium", "python" },
 				python_host = { "conda", "run", "--no-capture-output", "-n", "base", "python" },
+				use_default_keybindings = false,
 				-- python = "python3",
 				-- jupyter_command = "jupyter",
 				jupyter_command = { "conda", "run", "--no-capture-output", "-n", "base", "jupyter" },
 				-- default_notebook_URL = "localhost:8888/",
 				auto_start_server = {
-					enable = true,
-					file_pattern = { "*.ju.*" },
+					enable = false,
 				},
 			})
 		end,
