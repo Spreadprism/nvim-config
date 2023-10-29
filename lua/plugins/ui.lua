@@ -94,11 +94,16 @@ return {
 	{
 		"kiyoon/jupynium.nvim",
 		event = "VeryLazy",
-		build = "conda run --no-capture-output -n jupynium pip install .",
+		build = "conda run --no-capture-output -n base pip install .",
+		cmd = { "JupyniumStartAndAttachToServer", "JupyniumAttachToServer" },
 		config = function()
 			require("jupynium").setup({
-				python_host = { "conda", "run", "--no-capture-output", "-n", "jupynium", "python" },
+				-- python_host = { "conda", "run", "--no-capture-output", "-n", "jupynium", "python" },
+				python_host = { "conda", "run", "--no-capture-output", "-n", "base", "python" },
+				-- python = "python3",
+				-- jupyter_command = "jupyter",
 				jupyter_command = { "conda", "run", "--no-capture-output", "-n", "base", "jupyter" },
+				-- default_notebook_URL = "localhost:8888/",
 				auto_start_server = {
 					enable = true,
 					file_pattern = { "*.ju.*" },

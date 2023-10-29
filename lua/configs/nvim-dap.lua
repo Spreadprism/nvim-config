@@ -20,6 +20,12 @@ return function()
 		},
 	}
 
+	dap.adapters.coreclr = {
+		type = "executable",
+		command = "netcoredbg",
+		args = { "--interpreter=vscode" },
+	}
+
 	-- INFO: Load vscode launch.json
 	require("dap.ext.vscode").load_launchjs(nil, {
 		codelldb = { "rust" },
@@ -93,6 +99,43 @@ return function()
 	-- 	},
 	-- }
 	-- dap.configurations.cpp = dap.configurations.c
+
+	local overseer = require("overseer")
+
+	local get_cs_program_debug = function()
+		local directory = vim.fn.getcwd()
+		local program_name = string.match(directory, "[^/]+$")
+		local program = directory .. "/bin/Debug/net7.0/" .. program_name .. ".dll"
+		return program
+	end
+
+	-- INFO: C# CONFIGS
+	overseer.register_template({
+		name = "C# build debug",
+		builder = function(params)
+			return {
+				cmd = { "dotnet" },
+				args = { "build" },
+				name = "C# build debug",
+			}
+		end,
+	})
+
+	dap.configurations.cs = {
+		{
+			name = "(NVIM-CONFIG) Launch debug",
+			type = "coreclr",
+			request = "launch",
+			cwd = "${workspaceFolder}",
+			terminal = "integrated",
+			console = "integratedTerminal",
+			stopOnEntry = false,
+			program = get_cs_program_debug,
+			preLaunchTask = "C# build debug",
+		},
+	}
+	-- INFO: RUST CONFIGS
+
 	local get_rust_program_debug = function()
 		local directory = vim.fn.getcwd()
 		local program_name = string.match(directory, "[^/]+$")
@@ -100,9 +143,6 @@ return function()
 		return program
 	end
 
-	local overseer = require("overseer")
-
-	-- INFO: RUST CONFIGS
 	overseer.register_template({
 		name = "Rust build debug",
 		builder = function(params)

@@ -240,20 +240,12 @@ return {
 	},
 	{
 		"iamcco/markdown-preview.nvim",
+		cmd = { "MarkdownPreviewToggle", "MarkdownPreview", "MarkdownPreviewStop" },
+		build = "cd app && npm install",
+		init = function()
+			vim.g.mkdp_filetypes = { "markdown" }
+		end,
 		ft = { "markdown" },
-		build = function()
-			vim.fn["mkdp#util#install"]()
-		end,
-		config = function()
-			vim.cmd([[
-				" function OpenMarkdownPreview (url)
-				" 	execute "!xdg-open " . a:url
-				" endfunction
-    "     let g:mkdp_browserfunc = 'OpenMarkdownPreview'
-        let g:mkdp_auto_close = 0
-        let g:mkdp_theme = 'dark'
-			]])
-		end,
 	},
 	{
 		"ThePrimeagen/harpoon",

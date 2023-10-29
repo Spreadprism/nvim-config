@@ -67,8 +67,19 @@ return {
 		event = "VeryLazy",
 		dependencies = "mfussenegger/nvim-dap",
 		config = function()
-			require("overseer").setup()
+			local overseer = require("overseer")
+			overseer.setup()
 			require("dap.ext.vscode").json_decode = require("overseer.json").decode
+			overseer.register_template({
+				{
+					name = "Start jupyter notebook",
+					builder = function(params)
+						return {
+							cmd = { "" },
+						}
+					end,
+				},
+			})
 		end,
 	},
 

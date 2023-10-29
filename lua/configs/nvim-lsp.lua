@@ -123,6 +123,12 @@ return function()
 		single_file_support = true,
 	})
 
+	-- c#
+	local home = os.getenv("HOME")
+	lspconfig.omnisharp.setup({
+		cmd = { home .. "/.local/share/nvim/mason/bin/omnisharp" },
+	})
+
 	vim.api.nvim_create_autocmd("LspAttach", {
 		group = vim.api.nvim_create_augroup("UserLspConfig", {}),
 		callback = function(ev)
