@@ -16,6 +16,7 @@ end
 local rules_to_ignore = {
 	"F841",
 	"F401",
+	"F821",
 }
 
 ruff.args = {

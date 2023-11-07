@@ -20,7 +20,7 @@ M.n = {
 	-- ["<leader>xa"] = {":%bd<CR>", "Close all buffers", {noremap = true, silent = true}},
 	-- ["<leader>xo"] = {":%bd|e#|bd#<CR>", "Close other buffers", {noremap = true, silent = true}},
 	["<leader>ol"] = { "<CMD>Lazy<CR>", "Open Lazy", { silent = true } },
-	["<leader>om"] = { "<CMD>Mason<CR>", "Open Mason", { silent = true } },
+	["<leader>oM"] = { "<CMD>Mason<CR>", "Open Mason", { silent = true } },
 	-- INFO: Needs npm install -g clipboard-cli
 	["<leader>yf"] = {
 		function()

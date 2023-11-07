@@ -56,6 +56,7 @@ return {
 		},
 		config = function()
 			require("dap-python").setup(require("utility.python_env_manager").get_python_path())
+			vim.keymap.set("n", "<leader>ao", "<cmd>PyrightOrganizeImports<cr>", { desc = "Organize imports" })
 		end,
 	},
 	{
