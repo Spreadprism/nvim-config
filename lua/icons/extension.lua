@@ -55,4 +55,9 @@ return {
 		color = "#007acc",
 		name = "typescript",
 	},
+	["puml"] = {
+		icon = "",
+		color = "#ACE54A",
+		name = "puml",
+	},
 }
