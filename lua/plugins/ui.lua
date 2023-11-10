@@ -22,6 +22,23 @@ return {
 		end,
 	},
 	{
+		"jonahgoldwastaken/copilot-status.nvim",
+		event = "VeryLazy",
+		dependencies = { "zbirenbaum/copilot.lua" },
+		config = function()
+			require("copilot_status").setup({
+				icons = {
+					idle = " ",
+					error = " ",
+					offline = " ",
+					warning = " ",
+					loading = " ",
+				},
+				debug = false,
+			})
+		end,
+	},
+	{
 		"stevearc/dressing.nvim",
 		init = function()
 			---@diagnostic disable-next-line: duplicate-set-field

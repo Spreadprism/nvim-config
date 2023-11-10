@@ -252,15 +252,33 @@ return {
 		"ThePrimeagen/harpoon",
 		event = "VeryLazy",
 		dependencies = "nvim-telescope/telescope.nvim",
-		configs = function()
+		config = function()
 			require("harpoon").setup({})
 			require("telescope").load_extension("harpoon")
 		end,
 	},
 	{
 		"windwp/nvim-ts-autotag",
+		event = "VeryLazy",
 		config = function()
 			require("nvim-ts-autotag").setup()
+		end,
+	},
+	{
+		"zbirenbaum/copilot.lua",
+		event = "VeryLazy",
+		config = function()
+			require("copilot").setup({
+				suggestion = { enabled = false },
+				panel = { enabled = false },
+			})
+		end,
+	},
+	{
+		"zbirenbaum/copilot-cmp",
+		event = "VeryLazy",
+		config = function()
+			require("copilot_cmp").setup()
 		end,
 	},
 }

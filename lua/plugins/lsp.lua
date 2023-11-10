@@ -49,6 +49,7 @@ return {
 				},
 				sources = cmp.config.sources({
 					{ name = "path" },
+					{ name = "copilot", group_index = 2 },
 					{ name = "crates", keyword_length = 0 },
 					{ name = "nvim_lsp", keyword_length = 1 },
 					{ name = "buffer", keyword_length = 3 },
@@ -65,6 +66,7 @@ return {
 							luasnip = "⋗",
 							buffer = "Ω",
 							path = "🖫",
+							copilot = " ",
 						}
 
 						item.menu = menu_icon[entry.source.name]

@@ -31,4 +31,7 @@ end
 
 return {
 	get_os_symbol,
+	-- function()
+	-- 	return require("copilot_status").status_string()
+	-- end,
 }

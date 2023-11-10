@@ -11,12 +11,17 @@ local colors = {
 	blue = "#51afef",
 	red = "#ec5f67",
 }
+
+local blacklist = {
+	"null-ls",
+	"copilot",
+}
 -- LSP clients attached to buffer
 local clients_lsp = function()
 	local bufnr = vim.api.nvim_get_current_buf()
 	local clients = vim.lsp.buf_get_clients(bufnr)
 	if next(clients) == nil then
-		return "  " .. "No lsp"
+		clients = {}
 	end
 	local c = {}
 	for _, client in pairs(clients) do
@@ -24,11 +29,40 @@ local clients_lsp = function()
 		if name == "pyright" then
 			name = name .. "(" .. require("utility.python_env_manager").get_venv_dir_name() .. ")"
 		end
-		if name ~= "null-ls" then
+		local blacklisted = false
+		for _, blacklist_value in pairs(blacklist) do
+			if name == blacklist_value then
+				blacklisted = true
+				break
+			end
+		end
+		if not blacklisted then
 			table.insert(c, name)
 		end
 	end
-	return " " .. table.concat(c, "|")
+
+	if #c > 0 then
+		return " " .. table.concat(c, " | ")
+	else
+		return " " .. "No lsp"
+	end
+end
+
+local status_to_color = {
+	idle = colors.green,
+	loading = colors.blue,
+	error = colors.red,
+	warning = colors.orange,
+}
+local get_copilot_color = function()
+	local status = require("copilot_status").status().status
+	local color = nil
+	for key, val in pairs(status_to_color) do
+		if key == status then
+			color = { fg = val }
+		end
+	end
+	return color
 end
 
 local overseer = require("overseer")
@@ -39,6 +73,10 @@ return {
 		symbols = {
 			[overseer.STATUS.RUNNING] = "󰦖 ",
 		},
+	},
+	{
+		require("copilot_status").status_string,
+		color = get_copilot_color,
 	},
 	{
 		clients_lsp,
