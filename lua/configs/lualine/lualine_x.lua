@@ -49,8 +49,8 @@ local clients_lsp = function()
 end
 
 local status_to_color = {
-	idle = colors.green,
-	loading = colors.blue,
+	idle = colors.blue,
+	loading = colors.green,
 	error = colors.red,
 	warning = colors.orange,
 }
