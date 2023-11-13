@@ -86,7 +86,7 @@ return {
 			-- INFO: general
 			vim.keymap.set("n", "<leader>sC", builtin.commands, { desc = "Search commands" })
 			-- INFO: history
-			vim.keymap.set("n", "<leader>shC", builtin.command_history, { desc = "Search commands history" })
+			vim.keymap.set("n", "<leader>shc", builtin.command_history, { desc = "Search commands history" })
 			-- INFO: git
 			vim.keymap.set("n", "<leader>sgB", builtin.git_branches, { desc = "Search branches" })
 			vim.keymap.set("n", "<leader>sgc", builtin.git_commits, { desc = "Search commits" })
