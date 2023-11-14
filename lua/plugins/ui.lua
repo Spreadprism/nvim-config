@@ -131,6 +131,7 @@ return {
 	{
 		"mrjones2014/smart-splits.nvim",
 	},
+	{
 		"3rd/image.nvim",
 		event = "VeryLazy",
 		config = function()

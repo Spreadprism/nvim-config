@@ -7,7 +7,7 @@ M.n = {
 	-- moving
 	["L"] = { "g_", "move the cursor to the last non-whitespace character", { noremap = true } },
 	-- closing and saving
-	["<C-q>"] = { ":qa<CR>", "close", { silent = true } },
+	["<C-q>"] = { "<CMD>q<CR>", "close", { silent = true } },
 	-- file keymaps
 	["<leader>e"] = { ":Neotree toggle<CR>", "Toggle file explorer", { noremap = true, silent = true } },
 	["<leader>E"] = {
@@ -15,10 +15,32 @@ M.n = {
 		"Toggle file explorer with current file as focus",
 		{ noremap = true, silent = true },
 	},
-	["<A-v>"] = { "<cmd>vsplit<CR>", "Vertical split" },
-	["<A-V>"] = { "<cmd>ssplit<CR>", "Horizontal split" },
-	["<M-Left>"] = { require("smart-splits").resize_left, "Horizontal split" },
-	["<M-Right>"] = { require("smart-splits").resize_right, "Horizontal split" },
+	["<M-v>"] = { "<CMD>vsplit<CR>", "Vertical split" },
+	["<M-V>"] = { "<CMD>split<CR>", "Horizontal split" },
+	["<C-Left>"] = {
+		function()
+			require("smart-splits").resize_left()
+		end,
+		"Horizontal split",
+	},
+	["<C-Right>"] = {
+		function()
+			require("smart-splits").resize_right()
+		end,
+		"Horizontal split",
+	},
+	["<C-Down>"] = {
+		function()
+			require("smart-splits").resize_down()
+		end,
+		"Horizontal split",
+	},
+	["<C-Up>"] = {
+		function()
+			require("smart-splits").resize_up()
+		end,
+		"Horizontal split",
+	},
 	-- Buffers manipulation
 	-- ["<leader>xx"] = {":bd!<CR>", "Close current buffer", {noremap = true, silent = true}},
 	-- ["<leader>xa"] = {":%bd<CR>", "Close all buffers", {noremap = true, silent = true}},
