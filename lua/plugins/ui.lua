@@ -128,6 +128,9 @@ return {
 			})
 		end,
 	},
+	{
+		"mrjones2014/smart-splits.nvim",
+	},
 	-- {
 	--   'goolord/alpha-nvim',
 	--   dependencies = { 'nvim-tree/nvim-web-devicons' },

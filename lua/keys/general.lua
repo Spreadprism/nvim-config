@@ -15,6 +15,10 @@ M.n = {
 		"Toggle file explorer with current file as focus",
 		{ noremap = true, silent = true },
 	},
+	["<A-v>"] = { "<cmd>vsplit<CR>", "Vertical split" },
+	["<A-V>"] = { "<cmd>ssplit<CR>", "Horizontal split" },
+	["<M-Left>"] = { require("smart-splits").resize_left, "Horizontal split" },
+	["<M-Right>"] = { require("smart-splits").resize_right, "Horizontal split" },
 	-- Buffers manipulation
 	-- ["<leader>xx"] = {":bd!<CR>", "Close current buffer", {noremap = true, silent = true}},
 	-- ["<leader>xa"] = {":%bd<CR>", "Close all buffers", {noremap = true, silent = true}},
