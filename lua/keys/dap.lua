@@ -125,5 +125,20 @@ M.n = {
 		"Search breakpoints",
 		{ silent = true },
 	},
+	["<leader>oc"] = {
+		function()
+			require("dapui").toggle(3)
+		end,
+	},
+	["<leader>or"] = {
+		function()
+			require("dapui").toggle(2)
+		end,
+	},
+	["<leader>ow"] = {
+		function()
+			require("dapui").toggle(1)
+		end,
+	},
 }
 return M

@@ -48,6 +48,10 @@ M.n = {
 			vim.cmd("e " .. filename .. ".ju.py")
 		end,
 	},
+	[jupynium_bind .. "x"] = { "<cmd>JupyniumExecuteSelectedCells<CR>", "Execute cell" },
+	[jupynium_bind .. "c"] = { "<cmd>JupyniumClearSelectedCellsOutputs<CR>", "Clear cell" },
+	[jupynium_bind .. "k"] = { "<cmd>JupyniumKernelHover<cr>", "Hover variable" },
+	[jupynium_bind .. "r"] = { "<cmd>JupyniumKernelRestart<cr>", "Restart kernel" },
 }
 
 return M
