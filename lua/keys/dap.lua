@@ -3,26 +3,7 @@ local M = {}
 M.n = {
 	["<F5>"] = {
 		function()
-			-- RustRunnables
-			-- local current_bufnr = vim.api.nvim_get_current_buf()
-			-- local filetype = vim.api.nvim_buf_get_option(current_bufnr, "filetype")
-			-- if filetype == "rust" then
-			-- 	local sessions = require("dap").sessions()
-			-- 	local sessionActive = false
-			-- 	for _, session in pairs(sessions) do
-			-- 		if session ~= nil and session.is_active ~= nil and session:is_active() then
-			-- 			sessionActive = true
-			-- 			break
-			-- 		end
-			-- 	end
-			-- 	if sessionActive then
-			-- 		require("dap").continue()
-			-- 	else
-			-- 		vim.cmd("RustDebuggables")
-			-- 	end
-			-- else
 			require("dap").continue()
-			-- end
 		end,
 		"DAP start / continue",
 		{ silent = true },
@@ -111,11 +92,11 @@ M.n = {
 		"Evaluate under cursor",
 		{ silent = true },
 	},
-	["<leader>dR"] = {
+	["<leader>oR"] = {
 		function()
 			require("dapui").float_element("repl", {})
 		end,
-		"Open repl",
+		"Open floating repl",
 		{ silent = true },
 	},
 	["<leader>sb"] = {
@@ -129,16 +110,19 @@ M.n = {
 		function()
 			require("dapui").toggle(3)
 		end,
+		"Open console",
 	},
 	["<leader>or"] = {
 		function()
 			require("dapui").toggle(2)
 		end,
+		"Open repl",
 	},
 	["<leader>ow"] = {
 		function()
 			require("dapui").toggle(1)
 		end,
+		"Open watchers",
 	},
 }
 return M

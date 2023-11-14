@@ -11,8 +11,16 @@ return {
 			local dap = require("dap")
 			local dapui = require("dapui")
 			dapui.setup(require("configs.nvim-dap-ui"))
-			dap.listeners.after.event_initialized["dapui_config"] = function()
-				dapui.open(2)
+			dap.listeners.after.event_initialized["dapui_config"] = function(session)
+				local current_buffer = vim.api.nvim_get_current_buf()
+				local file_type = vim.api.nvim_buf_get_option(current_buffer, "filetype")
+				print("File type : " .. file_type)
+
+				if file_type == "go" then
+					dapui.open(2)
+				else
+					dapui.open(3)
+				end
 			end
 		end,
 	},
