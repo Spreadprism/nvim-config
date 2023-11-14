@@ -28,7 +28,7 @@ return function()
 
 	-- INFO: Load vscode launch.json
 	require("dap.ext.vscode").load_launchjs(nil, {
-		codelldb = { "rust" },
+		codelldb = { "rust", "c" },
 	})
 	-- local mason_bin = os.getenv("HOME") .. "/.local/share/nvim/mason"
 
@@ -81,13 +81,13 @@ return function()
 		}
 	end
 
-	local get_program = function()
-		return vim.fn.input("program: ", vim.loop.cwd() .. "/" .. vim.fn.expand("%f"), "file")
-	end
-	local get_args = function()
-		return vim.split(vim.fn.input("args: ", "", "file"), " ")
-	end
-
+	-- local get_program = function()
+	-- 	return vim.fn.input("program: ", vim.loop.cwd() .. "/" .. vim.fn.expand("%f"), "file")
+	-- end
+	-- local get_args = function()
+	-- 	return vim.split(vim.fn.input("args: ", "", "file"), " ")
+	-- end
+	--
 	-- dap.configurations.c = {
 	-- 	{
 	-- 		type = "codelldb",
@@ -100,8 +100,8 @@ return function()
 	-- 		args = get_args,
 	-- 	},
 	-- }
-	-- dap.configurations.cpp = dap.configurations.c
-
+	-- -- dap.configurations.cpp = dap.configurations.c
+	--
 	local overseer = require("overseer")
 
 	local get_cs_program_debug = function()
@@ -183,6 +183,6 @@ return function()
 
 	-- INFO: Load vscode launch.json
 	require("dap.ext.vscode").load_launchjs(nil, {
-		codelldb = { "rust" },
+		codelldb = { "rust", "c" },
 	})
 end
