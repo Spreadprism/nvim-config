@@ -74,6 +74,7 @@ return function()
 				skipFiles = { "**/node_modules/**/*", "**/src/*" },
 				resolveSourceMapLocations = { "${workspaceFolder}/**", "!**/node_modules/**" },
 				webRoot = "${workspaceFolder}",
+				sourceMaps = true,
 				port = "9222",
 				console = "integratedTerminal",
 			},
