@@ -41,11 +41,14 @@ M.n = {
 	},
 	[jupynium_bind .. "i"] = {
 		function()
+			local current_buffer_path = vim.fn.expand("%:p")
 			local name = vim.api.nvim_buf_get_name(0)
 			local filename = string.match(name, ".+/([^/]+)%.ipynb$")
+			local current_buffer_dir = vim.fn.expand("%:p:h")
+			local new_buffer_path = current_buffer_dir .. "/" .. filename .. ".ju.py"
 
-			vim.cmd("!conda run -n base ipynb2jupytext " .. filename .. ".ipynb " .. filename .. ".ju.py")
-			vim.cmd("e " .. filename .. ".ju.py")
+			vim.cmd("!conda run -n base ipynb2jupytext " .. current_buffer_path .. " " .. new_buffer_path)
+			vim.cmd("e " .. new_buffer_path)
 		end,
 	},
 	[jupynium_bind .. "x"] = { "<cmd>JupyniumExecuteSelectedCells<CR>", "Execute cell" },

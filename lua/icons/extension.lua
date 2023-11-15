@@ -40,6 +40,11 @@ return {
 		color = "#F87D15",
 		name = "ipynb",
 	},
+	["ju.py"] = {
+		icon = "",
+		color = "#FFD43B",
+		name = "jupy",
+	},
 	["java"] = {
 		icon = "",
 		color = "#EA2D2E",
