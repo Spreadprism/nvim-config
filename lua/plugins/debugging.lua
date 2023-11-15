@@ -1,3 +1,10 @@
+local prefered_output = {
+	go = 2,
+	typescriptreact = 2,
+	typescript = 2,
+	javascript = 2,
+}
+
 return {
 	{
 		"mfussenegger/nvim-dap",
@@ -5,14 +12,20 @@ return {
 	},
 	{
 		"rcarriga/nvim-dap-ui",
-		event = "VeryLazy",
 		dependencies = "mfussenegger/nvim-dap",
 		config = function()
 			local dap = require("dap")
 			local dapui = require("dapui")
 			dapui.setup(require("configs.nvim-dap-ui"))
 			dap.listeners.after.event_initialized["dapui_config"] = function()
-				dapui.open(2)
+				local current_buffer = vim.api.nvim_get_current_buf()
+				local file_type = vim.api.nvim_buf_get_option(current_buffer, "filetype")
+
+				local ui = prefered_output[file_type]
+				if ui == nil then
+					ui = 3
+				end
+				require("dapui").open(ui)
 			end
 		end,
 	},
