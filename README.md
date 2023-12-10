@@ -1,1 +1,1 @@
-# TITLE
+# nvim-config
