@@ -42,6 +42,19 @@ M.n = {
 		end,
 		"Horizontal split",
 	},
+
+	["tn"] = {
+		"<CMD>tabnew<CR>",
+		"New tab",
+	},
+	["tl"] = {
+		"<CMD>tabnext<CR>",
+		"Next tab",
+	},
+	["th"] = {
+		"<CMD>tabprevious<CR>",
+		"Previous tab",
+	},
 	-- Buffers manipulation
 	-- ["<leader>xx"] = {":bd!<CR>", "Close current buffer", {noremap = true, silent = true}},
 	-- ["<leader>xa"] = {":%bd<CR>", "Close all buffers", {noremap = true, silent = true}},
