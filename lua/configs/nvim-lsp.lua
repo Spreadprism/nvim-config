@@ -10,11 +10,7 @@ return function()
 
 	vim.cmd([[autocmd! CursorHold,CursorHoldI * lua vim.diagnostic.open_float(nil, {focus=false, scope="cursor"})]])
 
-	local lsp_defaults = lspconfig.util.default_config
-	-- Default LSP configs
-	-- lsp_defaults.on_attach = vim.tbl_deep_extend('force', lsp_defaults.on_attach, base_attach)
-	lsp_defaults.capabilities =
-		vim.tbl_deep_extend("force", lsp_defaults.capabilities, require("cmp_nvim_lsp").default_capabilities())
+	local lsp_capabilities = require("cmp_nvim_lsp").default_capabilities()
 
 	-- Language specific configs
 
@@ -32,6 +28,7 @@ return function()
 	lspconfig.lemminx.setup({})
 	-- python
 	lspconfig.pyright.setup({
+		capabilities = lsp_capabilities,
 		settings = {
 			python = {
 				pythonPath = require("utility.python_env_manager").get_python_path(),
@@ -132,7 +129,10 @@ return function()
 	-- c
 	local capabilities = vim.lsp.protocol.make_client_capabilities()
 	capabilities.offsetEncoding = { "utf-16" }
-	lspconfig.clangd.setup({ capabilities = capabilities })
+
+	lspconfig.clangd.setup({
+		capabilities = capabilities,
+	})
 
 	vim.api.nvim_create_autocmd("LspAttach", {
 		group = vim.api.nvim_create_augroup("UserLspConfig", {}),

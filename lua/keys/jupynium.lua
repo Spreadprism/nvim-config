@@ -39,7 +39,7 @@ M.n = {
 		end,
 		"Stop sync",
 	},
-	[jupynium_bind .. "i"] = {
+	[jupynium_bind .. "li"] = {
 		function()
 			local current_buffer_path = vim.fn.expand("%:p")
 			local name = vim.api.nvim_buf_get_name(0)
@@ -53,8 +53,14 @@ M.n = {
 	},
 	[jupynium_bind .. "x"] = { "<cmd>JupyniumExecuteSelectedCells<CR>", "Execute cell" },
 	[jupynium_bind .. "c"] = { "<cmd>JupyniumClearSelectedCellsOutputs<CR>", "Clear cell" },
-	[jupynium_bind .. "k"] = { "<cmd>JupyniumKernelHover<cr>", "Hover variable" },
-	[jupynium_bind .. "r"] = { "<cmd>JupyniumKernelRestart<cr>", "Restart kernel" },
+	[jupynium_bind .. "ks"] = { "<cmd>JupyniumKernelSelect<cr>", "Select kernel" },
+	[jupynium_bind .. "kr"] = { "<cmd>JupyniumKernelRestart<cr>", "Restart kernel" },
+	[jupynium_bind .. "ki"] = { "<cmd>JupyniumKernelInterrupt<cr>", "Interrupt kernel" },
+	[jupynium_bind .. "kk"] = { "<cmd>JupyniumKernelHover<cr>", "Hover variable" },
+}
+
+M.v = {
+	[jupynium_bind .. "x"] = { "<cmd>JupyniumExecuteSelectedCells<CR>", "Execute cell" },
 }
 
 return M

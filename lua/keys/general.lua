@@ -17,6 +17,7 @@ M.n = {
 	},
 	["<M-v>"] = { "<CMD>vsplit<CR>", "Vertical split" },
 	["<M-V>"] = { "<CMD>split<CR>", "Horizontal split" },
+	["<C-;>"] = { "<esc>", "Escape" },
 	["<C-Left>"] = {
 		function()
 			require("smart-splits").resize_left()
