@@ -42,6 +42,13 @@ M.n = {
 		end,
 		"Horizontal split",
 	},
+	["<leader>S"] = {
+		function()
+			require("spectre").toggle()
+		end,
+		"Spectre",
+		{ silent = true },
+	},
 
 	["tn"] = {
 		"<CMD>tabnew<CR>",

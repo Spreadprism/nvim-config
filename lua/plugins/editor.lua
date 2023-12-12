@@ -282,4 +282,12 @@ return {
 			require("copilot_cmp").setup()
 		end,
 	},
+	{
+		"nvim-pack/nvim-spectre",
+		event = "VeryLazy",
+		dependencies = { "nvim-lua/plenary.nvim" },
+		opts = {
+			is_insert_mode = true,
+		},
+	},
 }
