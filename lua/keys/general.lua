@@ -70,25 +70,25 @@ M.n = {
 	["<leader>ol"] = { "<CMD>Lazy<CR>", "Open Lazy", { silent = true } },
 	["<leader>oM"] = { "<CMD>Mason<CR>", "Open Mason", { silent = true } },
 	-- INFO: Needs npm install -g clipboard-cli
-	["<leader>yf"] = {
-		function()
-			-- TODO: Need to make the path actually relative to root
-			local bufname = vim.api.nvim_buf_get_name(0)
-			vim.cmd("silent! !echo " .. bufname .. " | clipboard")
-			print("Saved buffer's relative path to the clipboard.")
-		end,
-		"Save buffer's relative path to the clipboard.",
-		{ silent = true },
-	},
-	["<leader>yF"] = {
-		function()
-			local bufname = vim.api.nvim_buf_get_name(0)
-			vim.cmd("silent! !echo " .. bufname .. " | clipboard")
-			print("Saved buffer's absolute path in the clipboard.")
-		end,
-		"Save buffer's absolute path in the clipboard.",
-		{ silent = true },
-	},
+	-- ["<leader>yf"] = {
+	-- 	function()
+	-- 		-- TODO: Need to make the path actually relative to root
+	-- 		local bufname = vim.api.nvim_buf_get_name(0)
+	-- 		vim.cmd("silent! !echo " .. bufname .. " | clipboard")
+	-- 		print("Saved buffer's relative path to the clipboard.")
+	-- 	end,
+	-- 	"Save buffer's relative path to the clipboard.",
+	-- 	{ silent = true },
+	-- },
+	-- ["<leader>yF"] = {
+	-- 	function()
+	-- 		local bufname = vim.api.nvim_buf_get_name(0)
+	-- 		vim.cmd("silent! !echo " .. bufname .. " | clipboard")
+	-- 		print("Saved buffer's absolute path in the clipboard.")
+	-- 	end,
+	-- 	"Save buffer's absolute path in the clipboard.",
+	-- 	{ silent = true },
+	-- },
 	["<leader>op"] = {
 		"<cmd>PlantumlOpen<CR>",
 		"Open plantuml preview",
