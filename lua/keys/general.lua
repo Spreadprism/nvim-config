@@ -6,6 +6,7 @@ M.n = {
 	["<leader>od"] = { "<cmd>LazyDocker<CR>", "Open lazydocker" },
 	-- moving
 	["L"] = { "g_", "move the cursor to the last non-whitespace character", { noremap = true } },
+	["H"] = { "^", "move the cursor to the first non-whitespace character", { noremap = true } },
 	-- closing and saving
 	["<C-q>"] = { "<CMD>q<CR>", "close", { silent = true } },
 	-- file keymaps
@@ -150,6 +151,10 @@ M.v = {
 	["/"] = { "gcgv", "toggle comment", {}, true },
 	["L"] = { "g_", "move the cursor to the last non-whitespace character", { noremap = true } },
 	["Y"] = { '"+y', "Yank to clipboard", { silent = true } },
+}
+
+M.t = {
+	["<Esc>"] = { "<C-\\><C-n>", "Escape terminal" },
 }
 
 return M
