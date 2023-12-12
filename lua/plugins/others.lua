@@ -73,20 +73,43 @@ return {
 		end,
 	},
 	{
-		"Dhanus3133/LeetBuddy.nvim",
+		"smoka7/hop.nvim",
+		event = "VeryLazy",
+		version = "*",
+		opts = {},
+	},
+	-- {
+	-- 	"Dhanus3133/LeetBuddy.nvim",
+	-- 	dependencies = {
+	-- 		"nvim-lua/plenary.nvim",
+	-- 		"nvim-telescope/telescope.nvim",
+	-- 	},
+	-- 	config = function()
+	-- 		require("leetbuddy").setup({})
+	-- 	end,
+	-- 	keys = {
+	-- 		{ "<leader>lq", "<cmd>LBQuestions<cr>", desc = "List Questions" },
+	-- 		{ "<leader>ll", "<cmd>LBQuestion<cr>", desc = "View Question" },
+	-- 		{ "<leader>lr", "<cmd>LBReset<cr>", desc = "Reset Code" },
+	-- 		{ "<leader>lt", "<cmd>LBTest<cr>", desc = "Run Code" },
+	-- 		{ "<leader>ls", "<cmd>LBSubmit<cr>", desc = "Submit Code" },
+	-- 	},
+	-- },
+	{
+		"kawre/leetcode.nvim",
+		build = ":TSUpdate html",
 		dependencies = {
-			"nvim-lua/plenary.nvim",
 			"nvim-telescope/telescope.nvim",
+			"nvim-lua/plenary.nvim", -- required by telescope
+			"MunifTanjim/nui.nvim",
+
+			-- optional
+			"nvim-treesitter/nvim-treesitter",
+			"rcarriga/nvim-notify",
+			"nvim-tree/nvim-web-devicons",
 		},
-		config = function()
-			require("leetbuddy").setup({})
-		end,
-		keys = {
-			{ "<leader>lq", "<cmd>LBQuestions<cr>", desc = "List Questions" },
-			{ "<leader>ll", "<cmd>LBQuestion<cr>", desc = "View Question" },
-			{ "<leader>lr", "<cmd>LBReset<cr>", desc = "Reset Code" },
-			{ "<leader>lt", "<cmd>LBTest<cr>", desc = "Run Code" },
-			{ "<leader>ls", "<cmd>LBSubmit<cr>", desc = "Submit Code" },
+		opts = {
+			-- configuration goes here
 		},
 	},
 }

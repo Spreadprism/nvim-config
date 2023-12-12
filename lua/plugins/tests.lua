@@ -9,6 +9,7 @@ return {
 			"nvim-neotest/neotest-go",
 			"haydenmeade/neotest-jest",
 			"nvim-neotest/neotest-python",
+			"rouge8/neotest-rust",
 		},
 		config = function()
 			local neotest_namespace = vim.api.nvim_create_namespace("neotest")
@@ -34,6 +35,11 @@ return {
 					require("neotest-python")({
 						python = require("utility.python_env_manager").get_python_path(),
 						dap = { justMyCode = true },
+					}),
+					-- INFO: Rust
+					require("neotest-rust")({
+						args = { "--no-capture" },
+						dap_adapter = "codelldb",
 					}),
 				},
 			})
