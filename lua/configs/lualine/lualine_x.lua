@@ -13,8 +13,8 @@ local colors = {
 }
 
 local blacklist = {
-	"null-ls",
-	"copilot",
+	"copilot", --INFO: not an lsp
+	"ruff_lsp", -- INFO: Not an actual lsp, its a linter I don't want it to crowd the info
 }
 -- LSP clients attached to buffer
 local clients_lsp = function()

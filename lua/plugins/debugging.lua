@@ -84,7 +84,7 @@ return {
 		},
 		config = function()
 			require("dap-python").setup(require("utility.python_env_manager").get_python_path())
-			vim.keymap.set("n", "<leader>ao", "<cmd>PyrightOrganizeImports<cr>", { desc = "Organize imports" })
+			-- vim.keymap.set("n", "<leader>ao", "<cmd>PyrightOrganizeImports<cr>", { desc = "Organize imports" })
 			vim.api.nvim_set_keymap("n", "<leader>ass", "ysiW)istr<esc>b", { desc = "Surround with str()" })
 			vim.api.nvim_set_keymap("n", "<leader>adss", "ds)i<BS><BS><BS><esc>l", { desc = "Delete sourround str()" })
 		end,

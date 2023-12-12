@@ -27,11 +27,30 @@ return function()
 	-- xml
 	lspconfig.lemminx.setup({})
 	-- python
+
+	local rules_to_ignore = {
+		"E999",
+	}
+	lspconfig.ruff_lsp.setup({
+		on_attach = function(client, _)
+			client.server_capabilities.hoverProvider = false
+		end,
+		init_options = {
+			settings = {
+				-- Any extra CLI arguments for `ruff` go here.
+				args = {
+					-- "--ignore",
+					-- table.concat(rules_to_ignore, ","),
+				},
+			},
+		},
+	})
 	lspconfig.pyright.setup({
 		capabilities = lsp_capabilities,
 		settings = {
 			python = {
 				pythonPath = require("utility.python_env_manager").get_python_path(),
+				reportUnusedImport = "warning",
 				analysis = {
 					extraPaths = { vim.fn.getcwd() },
 					autoImportCompletions = true,
@@ -43,15 +62,60 @@ return function()
 						},
 					},
 					diagnosticSeverityOverrides = {
-						reportUnusedImport = "none",
-						reportUnusedClass = "none",
-						reportUnusedFunction = "none",
-						reportUnusedVariable = "none",
+						reportUnusedImport = "false",
+						reportUnusedClass = "false",
+						reportUnusedFunction = "false",
+						reportUnusedVariable = "false",
 					},
 				},
 			},
 		},
 	})
+	function filter(arr, func)
+		-- Filter in place
+		-- https://stackoverflow.com/questions/49709998/how-to-filter-a-lua-array-inplace
+		local new_index = 1
+		local size_orig = #arr
+		for old_index, v in ipairs(arr) do
+			if func(v, old_index) then
+				arr[new_index] = v
+				new_index = new_index + 1
+			end
+		end
+		for i = new_index, size_orig do
+			arr[i] = nil
+		end
+	end
+
+	function filter_diagnostics(diagnostic)
+		-- Only filter out Pyright stuff for now
+		if diagnostic.source ~= "Pyright" then
+			return true
+		end
+
+		-- remove any diagnostic messages that end with is not accessed
+
+		if diagnostic.message:find("is not accessed") then
+			return false
+		end
+		-- if diagnostic.message == '"kwargs" is not accessed' then
+		-- 	return false
+		-- end
+		--
+		-- -- Allow variables starting with an underscore
+		-- if string.match(diagnostic.message, '"_.+" is not accessed') then
+		-- 	return false
+		-- end
+
+		return true
+	end
+
+	function custom_on_publish_diagnostics(a, params, client_id, c, config)
+		filter(params.diagnostics, filter_diagnostics)
+		vim.lsp.diagnostic.on_publish_diagnostics(a, params, client_id, c, config)
+	end
+
+	vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(custom_on_publish_diagnostics, {})
 
 	lspconfig.tsserver.setup({
 		filetypes = { "javascript", "typescript", "typescriptreact", "typescript.tsx" },
