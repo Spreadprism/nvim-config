@@ -195,6 +195,8 @@ return {
 		config = function()
 			require("nvim-surround").setup({
 				-- Configuration here, or leave empty to use defaults
+				---@diagnostic disable-next-line: different-requires
+				surrounds = require("configs.nvim-surround"),
 			})
 		end,
 	},
