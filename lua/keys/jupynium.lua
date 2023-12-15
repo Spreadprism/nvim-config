@@ -1,6 +1,6 @@
 local M = {}
 
-local jupynium_bind = "<leader>J"
+local jupynium_bind = "<leader>j"
 
 local get_current_file_name = function()
 	local name = vim.api.nvim_buf_get_name(0)
