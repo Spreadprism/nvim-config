@@ -34,6 +34,8 @@ return {
 					-- INFO: Python
 					require("neotest-python")({
 						python = require("utility.python_env_manager").get_python_path(),
+						runner = "pytest",
+						args = { "--log-level", "DEBUG" },
 						dap = { justMyCode = true },
 					}),
 					-- INFO: Rust

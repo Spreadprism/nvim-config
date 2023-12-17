@@ -17,10 +17,12 @@ return function()
 	local util = require("lspconfig/util")
 	-- lua
 	lspconfig.lua_ls.setup({
-		Lua = {
-			diagnostics = {
-				-- Get the language server to recognize the `vim` global
-				globals = { "vim" },
+		settings = {
+			Lua = {
+				diagnostics = {
+					-- Get the language server to recognize the `vim` global
+					globals = { "vim" },
+				},
 			},
 		},
 	})
@@ -45,6 +47,7 @@ return function()
 			},
 		},
 	})
+
 	lspconfig.pyright.setup({
 		capabilities = lsp_capabilities,
 		settings = {
@@ -71,6 +74,7 @@ return function()
 			},
 		},
 	})
+
 	function filter(arr, func)
 		-- Filter in place
 		-- https://stackoverflow.com/questions/49709998/how-to-filter-a-lua-array-inplace

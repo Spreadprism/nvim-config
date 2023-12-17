@@ -2,11 +2,11 @@ return {
 	{
 		"mhartington/formatter.nvim",
 		event = "VeryLazy",
-		opts = function()
+		config = function()
 			vim.api.nvim_create_autocmd({ "BufWritePost" }, {
 				command = "FormatWriteLock",
 			})
-			return {
+			require("formatter").setup({
 				filetype = {
 					javascript = {
 						require("formatter.filetypes.javascript").prettier,
@@ -21,7 +21,15 @@ return {
 						require("formatter.filetypes.json").prettier,
 					},
 					["*"] = {
-						require("formatter.filetypes.any").remove_trailing_whitespace,
+						function()
+							local util = require("formatter.util")
+							if util.get_current_buffer_file_name() == "starship.toml" then
+								return nil
+							end
+							local save_cursor = vim.fn.getpos(".")
+							vim.cmd([[%s/\s\+$//e]])
+							vim.fn.setpos(".", save_cursor)
+						end,
 					},
 					python = {
 						require("formatter.filetypes.python").black,
@@ -36,7 +44,7 @@ return {
 						require("formatter.filetypes.lua").stylua,
 					},
 				},
-			}
+			})
 		end,
 	},
 }

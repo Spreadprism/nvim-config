@@ -292,4 +292,9 @@ return {
 			is_insert_mode = true,
 		},
 	},
+	-- {
+	-- 	"neoclide/coc.nvim",
+	-- 	event = "VeryLazy",
+	-- 	build = "npm ci",
+	-- },
 }
